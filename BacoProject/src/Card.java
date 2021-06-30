@@ -1,4 +1,4 @@
 public class Card {
         String name;
-        int mana;
+        int manaCost;
 }
