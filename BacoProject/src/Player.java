@@ -3,9 +3,9 @@ import java.util.Random;
 
 public class Player {
     int mana, nexus;
-    Card deck[] = new Card[40];
+    Card[] deck = new Card[40];
     ArrayList<Card> hands = new ArrayList<Card>();
-    boolean atack = true;  //Se verdadeiro o player ataca, se não, se defende. (Ver a melhor maneira de fazer)
+    TipeAttack tipe_attack;
 
     //pega do deck
     public void takeCard(){
