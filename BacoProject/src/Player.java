@@ -9,7 +9,7 @@ public class Player {
 
     //pega do deck
     public void takeCard(){
-        Randon r = new Random();
+        Random r = new Random();
 
         if (numRound == 0){
             for (int i = 0; i < 4; ++i)
