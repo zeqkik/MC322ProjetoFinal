@@ -1,4 +1,4 @@
-public class Follower extends Card{
-    int power;
-    int life;
+public abstract class Follower extends Card{
+    private int power;
+    private int life;
 }
