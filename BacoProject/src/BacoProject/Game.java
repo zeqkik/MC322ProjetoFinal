@@ -33,6 +33,7 @@ public class Game {
             if(numTurn == 0){
                 getCard();
             }
+            incrementMana();
             drawBoard();
             readInput();
             updateBoard();
@@ -42,6 +43,12 @@ public class Game {
             }
         }
         System.out.println("Game terminated. Bye!");
+    }
+
+    private void incrementMana() {
+        for(Player i : players){
+            i.incrementMana(numTurn);
+        }
     }
 
     private void drawBoard() {
@@ -79,12 +86,15 @@ public class Game {
 
     private void nextRound() {
         numTurn = 0;
-        switchAttacker();
-    }
+        for(Player i : players) {
 
-    private void switchAttacker(){
-        for(Player i : players){
             i.switchAttacker();
+
+            if(i.getMana() > 3){
+                i.incrementMana(3-i.getMana());
+            }
+
+
         }
     }
 

@@ -7,9 +7,9 @@ import java.util.Scanner;
 public class Player {
     int mana;
     int nexusLife;
-    ArrayList<Card> deck = new ArrayList<Card>();
-    ArrayList<Card> hands = new ArrayList<Card>();
-    ArrayList<Card> evockedUnits = new ArrayList<Card>();
+    ArrayList<iCard> deck = new ArrayList<iCard>();
+    ArrayList<iCard> hands = new ArrayList<iCard>();
+    ArrayList<iCard> evockedUnits = new ArrayList<iCard>();
     boolean attack = true;
 
     public Player() {
@@ -39,7 +39,20 @@ public class Player {
         }
     }
 
-    public Card evoke() {
+    public void getCard(){
+        if(deck.size()>0){
+            hands.add(deck.get(0));
+            try{
+                checkSizeDeck();
+                deck.remove(0);
+            } catch (SizeException e) {
+                System.out.println("Nao foi possivel adicionar a carta. Sua mao ja esta cheia.");
+                hands.remove(deck.get(0));
+            }
+        }
+    }
+
+    public iCard evoke() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Selecione a carta que deseja invocar");
         //colocar um print com as listas de cartas em mãos
@@ -49,18 +62,18 @@ public class Player {
         if (choose_card > hands.size()) {
             System.out.println("Posicao invalida");
         }
-        if (this.mana < Card.manaCost){
+        if (this.mana < hands.get(hands.indexOf(choose_card)).getMana()){
             System.out.println("Pontos de mana insuficiente");
         }
         else
-            this.mana = this.mana - Card.manaCost;
+            this.mana = this.mana - hands.get(hands.indexOf(choose_card)).getMana();
 
-        return hands.get(choose_card);
+        return hands.get(hands.indexOf(choose_card));
     }
 
     public boolean attackDefense(){
         Scanner atack = new Scanner(System.in);
-        System.out.println("Digite 1 para atacar, 2 para defender e qualquer outra valor para encerrar o turno);
+        System.out.println("Digite 1 para atacar, 2 para defender e qualquer outra valor para encerrar o turno");
         int ata_def = atack.nextInt();
 
         if (ata_def == 1){
@@ -85,4 +98,18 @@ public class Player {
         attack = b;
     }
 
+    public void incrementMana(int turn) {
+        if(this.mana + turn > 10){
+            this.mana = 10;
+        } else if(this.mana + turn < 0) {
+            this.mana = 0;
+        }
+        else {
+            this.mana += turn;
+        }
+    }
+
+    public int getMana() {
+        return this.mana;
+    }
 }
