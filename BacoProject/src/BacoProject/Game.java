@@ -78,9 +78,8 @@ public class Game {
     }
 
     private void nextRound() {
-        for (Player i : players) {
-            i.giveCard();
-        }
+        numTurn = 0;
+        switchAttacker();
     }
 
     private void switchAttacker(){

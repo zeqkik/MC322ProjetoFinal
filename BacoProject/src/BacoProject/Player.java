@@ -59,7 +59,7 @@ public class Player {
 
     private void checkSizeDeck() throws SizeException {
         if (hands.size() > 10) {
-            throw new SizeException("Numero de cartas invalido");
+            throw new SizeException("Numero de cartas invalido.");
         }
     }
 
