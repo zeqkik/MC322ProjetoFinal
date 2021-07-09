@@ -16,8 +16,9 @@ public class Game {
 
     public void start() {
         exitSelected = false;
-        System.out.println("BacoProject.Game started!");
-        player1 = new Player()
+        System.out.println("Game started!");
+        Player player1 = new Player();
+        players.add(player1);
         giveInitialCards();
 
         while (!exitSelected) {
@@ -25,7 +26,7 @@ public class Game {
             readInput();
             updateBoard();
         }
-        System.out.println("BacoProject.Game terminated. Bye!");
+        System.out.println("Game terminated. Bye!");
     }
 
     private void drawBoard() {
@@ -54,4 +55,11 @@ public class Game {
             player.addMana(10 - player.getMana());
         }
     }
+
+    private void giveInitialCards(){
+        for(Player i : players){
+            i.giveInitialCards();
+        }
+    }
 }
+
