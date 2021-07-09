@@ -1,6 +1,6 @@
 package BacoProject;
 
 public abstract class Follower extends Card{
-    private int power;
-    private int life;
+    protected int power;
+    protected int life;
 }
