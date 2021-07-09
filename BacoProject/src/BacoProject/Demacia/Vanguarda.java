@@ -5,9 +5,9 @@ import BacoProject.iEffect;
 
 public class Vanguarda extends Follower implements iEffect {
     public Vanguarda(){
-        this.manaCost = 4;
-        this.power = 3;
-        this.life = 3;
+        super.manaCost = 4;
+        super.power = 3;
+        super.life = 3;
     }
     @Override
     public void playEffect() {

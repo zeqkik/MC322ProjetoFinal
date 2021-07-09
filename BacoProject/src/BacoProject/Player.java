@@ -48,13 +48,27 @@ public class Player {
 
         if (choose_card > hands.size()) {
             System.out.println("Posicao invalida");
-        } else if (this.mana < Card.getMana()){
+        }
+        if (this.mana < Card.manaCost){
             System.out.println("Pontos de mana insuficiente");
         }
         else
             this.mana = this.mana - Card.manaCost;
 
         return hands.get(choose_card);
+    }
+
+    public boolean attackDefense(){
+        Scanner atack = new Scanner(System.in);
+        System.out.println("Digite 1 para atacar, 2 para defender e qualquer outra valor para encerrar o turno);
+        int ata_def = atack.nextInt();
+
+        if (ata_def == 1){
+           return tipe_attack = true;
+        }
+        else if (ata_def == 2) {
+            return tipe_attack = false;
+        }
     }
 
     private void checkSizeDeck() throws SizeException {
