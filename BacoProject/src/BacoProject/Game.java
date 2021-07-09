@@ -1,3 +1,5 @@
+package BacoProject;
+
 import java.util.ArrayList;
 
 public class Game {
@@ -14,7 +16,7 @@ public class Game {
 
     public void start() {
         exitSelected = false;
-        System.out.println("Game started!");
+        System.out.println("BacoProject.Game started!");
         player1 = new Player()
         giveInitialCards();
 
@@ -23,7 +25,7 @@ public class Game {
             readInput();
             updateBoard();
         }
-        System.out.println("Game terminated. Bye!");
+        System.out.println("BacoProject.Game terminated. Bye!");
     }
 
     private void drawBoard() {

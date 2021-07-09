@@ -1,3 +1,5 @@
+package BacoProject;
+
 import java.util.ArrayList;
 
 public class Board {

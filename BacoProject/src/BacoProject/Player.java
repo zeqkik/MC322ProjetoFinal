@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+package BacoProject;
+
 import java.util.List;
 import java.util.Random;
 
@@ -6,7 +7,7 @@ public class Player {
     int mana, nexus;
     List<Card> deck = new List<Card>();
     Card[] hands = new Card[10];
-    //ArrayList<Card> hands = new ArrayList<Card>();
+    //ArrayList<BacoProject.Card> hands = new ArrayList<BacoProject.Card>();
     TipeAttack tipe_attack;
 
     public Player(){
