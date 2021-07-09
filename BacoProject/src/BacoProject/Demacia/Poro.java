@@ -4,8 +4,8 @@ import BacoProject.Follower;
 
 public class Poro extends Follower {
     public Poro(){
-        this.manaCost = 1;
-        this.power = 2;
-        this.life = 1;
+        super.manaCost = 1;
+        super.power = 2;
+        super.life = 1;
     }
 }

@@ -5,9 +5,9 @@ import BacoProject.iEffect;
 
 public class Tiana extends Follower implements iEffect {
     public Tiana(){
-        this.manaCost = 8;
-        this.power = 7;
-        this.life = 7;
+        super.manaCost = 8;
+        super.power = 7;
+        super.life = 7;
     }
     @Override
     public void playEffect() {
