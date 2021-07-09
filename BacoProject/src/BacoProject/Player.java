@@ -38,23 +38,23 @@ public class Player {
         }
     }
 
-    //invoca no campo
     public Card evoke() {
         Scanner card_hand = new Scanner(System.in);
         System.out.println("Selecione a carta que deseja invocar");
-        //colcocar um print com as listas de cartas em mãos
+        //colocar um print com as listas de cartas em mãos
 
-        int choose_card = card_hand.nextInt();
+        int choose_card = card_hand.nextInt(); //recebe a posição da carta
+
         if (choose_card > hands.size()) {
             System.out.println("Posicao invalida");
         }
+        if (this.mana < Card.manaCost){
+            System.out.println("Pontos de mana insuficiente");
+        }
+        else
+            this.mana = this.mana - Card.manaCost;
 
-
-
-
-        //escolhe uma carta da mão
-        //paga a mana
-        //coloca na board
+        return hands.get(choose_card);
     }
 
     private void checkSizeDeck() throws SizeException {
