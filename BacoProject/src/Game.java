@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Game {
     ArrayList<Card> cards = new ArrayList<Card>();
+    ArrayList<Player> players = new ArrayList<Player>();
     private int numRound;
 
 
@@ -14,6 +15,8 @@ public class Game {
     public void start() {
         exitSelected = false;
         System.out.println("Game started!");
+        player1 = new Player()
+        giveInitialCards();
 
         while (!exitSelected) {
             drawBoard();

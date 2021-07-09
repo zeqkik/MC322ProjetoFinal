@@ -1,12 +1,21 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Player {
     int mana, nexus;
-    Card[] deck = new Card[40];
+    List<Card> deck = new List<Card>();
     Card[] hands = new Card[10];
     //ArrayList<Card> hands = new ArrayList<Card>();
     TipeAttack tipe_attack;
+
+    public Player(){
+        Random ran = new Random(40);
+        for(int i = 0; i<4; i++){
+
+        }
+
+    }
 
     //pega do deck
     public void takeCard() {
