@@ -9,7 +9,7 @@ public class Player {
     int nexusLife;
     ArrayList<Card> deck = new ArrayList<Card>();
     ArrayList<Card> hands = new ArrayList<Card>();
-    boolean tipe_attack = true;
+    boolean attack = true;
 
     public Player() {
         this.mana = 0;
@@ -72,8 +72,16 @@ public class Player {
 
     private void checkSizeDeck() throws SizeException {
         if (hands.size() > 10) {
-            throw new SizeException("Numero de cartas invalido");
+            throw new SizeException("Numero de cartas invalido.");
         }
+    }
+
+    public void switchAttacker(){
+        this.attack = !this.attack;
+    }
+
+    public void setAttack(boolean b){
+        attack = b;
     }
 
 }
