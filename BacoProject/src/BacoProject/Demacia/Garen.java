@@ -2,9 +2,9 @@ package BacoProject.Demacia;
 
 import BacoProject.Champion;
 import BacoProject.Trace;
-import BacoProject.iChampion;
+import BacoProject.iEffect;
 
-public class Garen extends Champion implements iChampion {
+public class Garen extends Champion implements iEffect {
     private int attackCounter = 0;
     public Garen(){
         this.manaCost = 5;
@@ -17,7 +17,6 @@ public class Garen extends Champion implements iChampion {
         this.life = 5;
     }
 
-    @Override
     public void levelUp() {
         this.trace = Trace.ELUSIVE;
         this.power++;
