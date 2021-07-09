@@ -9,6 +9,7 @@ public class Player {
     int nexusLife;
     ArrayList<Card> deck = new ArrayList<Card>();
     ArrayList<Card> hands = new ArrayList<Card>();
+    ArrayList<Card> evockedUnits = new ArrayList<Card>();
     boolean attack = true;
 
     public Player() {
@@ -39,16 +40,15 @@ public class Player {
     }
 
     public Card evoke() {
-        Scanner card_hand = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.println("Selecione a carta que deseja invocar");
         //colocar um print com as listas de cartas em mãos
 
-        int choose_card = card_hand.nextInt(); //recebe a posição da carta
+        int choose_card = sc.nextInt(); //recebe a posição da carta
 
         if (choose_card > hands.size()) {
             System.out.println("Posicao invalida");
-        }
-        if (this.mana < Card.manaCost){
+        } else if (this.mana < Card.getMana()){
             System.out.println("Pontos de mana insuficiente");
         }
         else
