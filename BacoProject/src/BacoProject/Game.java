@@ -1,8 +1,5 @@
 package BacoProject;
 
-import com.sun.nio.sctp.SctpChannel;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -68,21 +65,6 @@ public class Game {
 
     }
 
-    private void switchCards() {
-        for (int i = 0; i < 40; i++) {
-            Card card = new Card();
-            cards.add(card);
-        }
-    }
-
-    void giveMana(Player player) {
-        if (player.getMana() + numRound < 10) {
-            player.addMana(numRound);
-        } else {
-            player.addMana(10 - player.getMana());
-        }
-    }
-
     private void giveInitialCards() {
         for (Player i : players) {
             i.giveInitialCards();
@@ -127,8 +109,9 @@ public class Game {
                 System.out.println(n + ": " + card.toString());
                  n++;
             }
-            //colocar no battlefield
-            System.out.println(defensePlayer.toString()+", selecione as cartas que você deseja usar para defender")
+            int select = sc.nextInt();
+
+            System.out.println(defensePlayer.toString()+", selecione as cartas que você deseja usar para defender");
             for (Card card : defensePlayer.getEvockedUnits()) {
                 System.out.println(n + ": " + card.toString());
                 //percorrer battlefield ataque e perguntar "quem vc quer defender com essa carta"
@@ -136,7 +119,7 @@ public class Game {
                 //evocar essa carta no battlefield defesa no mesmo indice do battlefield ataque
                 n++;
             }
-            int select = sc.nextInt();
+            int select1 = sc.nextInt();
 
         }
     }

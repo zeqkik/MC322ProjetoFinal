@@ -1,7 +1,5 @@
 package BacoProject;
 
-import BacoProject.Demacia.*;
-
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -10,7 +8,8 @@ public class Player {
     private String name;
     private int mana;
     private int nexusLife;
-    private ArrayList<Card> deck = new ArrayList<Card>();
+    //private ArrayList<Card> deck = new ArrayList<Card>();
+    Deck deck;
     private ArrayList<Card> hands = new ArrayList<Card>();
     private ArrayList<Card> evockedUnits = new ArrayList<Card>();
     private boolean attack = true;
@@ -18,7 +17,7 @@ public class Player {
     public Player() {
         this.mana = 0;
         this.nexusLife = 20;
-        getRandomDeck();
+        deck = new Deck(this);
 
     }
 
@@ -85,19 +84,6 @@ public class Player {
     private void checkSizeEvockeUnits() throws SizeException {
         if(evockedUnits.size() > 6){
             throw new SizeException("Nao eh possivel evocar. Voce ja envocou 6 cartas.");
-        }
-    }
-
-    public boolean attackDefense(){
-        Scanner atack = new Scanner(System.in);
-        System.out.println("Digite 1 para atacar, 2 para defender e qualquer outra valor para encerrar o turno");
-        int ata_def = atack.nextInt();
-
-        if (ata_def == 1){
-           return tipe_attack = true;
-        }
-        else if (ata_def == 2) {
-            return tipe_attack = false;
         }
     }
 

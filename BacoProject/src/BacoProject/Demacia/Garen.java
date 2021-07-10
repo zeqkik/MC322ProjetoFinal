@@ -1,11 +1,8 @@
 package BacoProject.Demacia;
 
-import BacoProject.Champion;
-import BacoProject.Player;
-import BacoProject.Trace;
-import BacoProject.iEffect;
+import BacoProject.*;
 
-public class Garen extends Champion implements iEffect {
+public class Garen extends Champion implements iEffect, Lifeable {
     private int attackCounter = 0;
     public Garen(Player player){
         super(player);
@@ -32,5 +29,15 @@ public class Garen extends Champion implements iEffect {
             this.levelUp();
         }
         return this.power;
+    }
+
+    @Override
+    public void lifeUp(int i){
+        this.life += i;
+    }
+
+    @Override
+    public void powerUp(int i){
+        this.power -= i;
     }
 }

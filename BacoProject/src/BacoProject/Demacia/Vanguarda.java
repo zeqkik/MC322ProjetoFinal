@@ -3,9 +3,8 @@ package BacoProject.Demacia;
 import BacoProject.*;
 
 import java.util.ArrayList;
-import java.util.Observer;
 
-public class Vanguarda extends Follower implements iEffect {
+public class Vanguarda extends Follower implements iEffect, Lifeable{
     public Vanguarda(Player player){
         super(player);
         super.name = "Vanguarda";
@@ -15,21 +14,20 @@ public class Vanguarda extends Follower implements iEffect {
     }
     @Override
     public void playEffect() {
-        ArrayList evocked = this.owner.getEvockedUnits();
-        for(Follower card : evocked){
-            card.lifeUp(1);
-            card.powerUp(1);
-        }
-        for(Champion card : evocked){
-            card.lifeUp(1);
-            card.powerUp(1);
+        ArrayList<Card> evocked = this.owner.getEvockedUnits();
+        for(Card card : evocked){
+            if(card instanceof Lifeable) {
+                Lifeable aux = (Lifeable) card;
+                aux.lifeUp(1);
+                aux.powerUp(1);
+            }
         }
     }
 
-    @Override
-    public void update(Object o) {
-        if(o instanceof Board){
-
-        }
-    }
+//    @Override
+//    public void update(Object o) {
+//        if(o instanceof Board){
+//
+//        }
+//    }
 }
