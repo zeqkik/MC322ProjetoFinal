@@ -10,6 +10,7 @@ public class Game {
     ArrayList<Player> players = new ArrayList<Player>();
     private int numRound;
     private int numTurn;
+    Board board;
 
 
     public Game() {
@@ -103,25 +104,40 @@ public class Game {
         System.out.println(atackPlayer.toString()+", deseja entrar em batalha? Digite 1 para sim, 2 para não");
         Scanner sc = new Scanner(System.in);
         int atack = sc.nextInt();
+        int newC = 1;
         if(atack==1){
-            System.out.println("Selecione a carta que deseja enviar para a batalha(Digite o id)");
-            int n = 1;
-            for (Card card : atackPlayer.getEvockedUnits()) {
-                System.out.println(n + ": " + card.toString());
-                 n++;
-            }
-            int select = sc.nextInt();
+            do {
+                System.out.println("Selecione a carta que deseja enviar para a batalha(Digite o id)");
 
-            System.out.println(defensePlayer.toString()+", selecione as cartas que você deseja usar para defender");
-            for (Card card : defensePlayer.getEvockedUnits()) {
-                System.out.println(n + ": " + card.toString());
-                //percorrer battlefield ataque e perguntar "quem vc quer defender com essa carta"
-
-                //evocar essa carta no battlefield defesa no mesmo indice do battlefield ataque
-                n++;
-            }
-            int select1 = sc.nextInt();
-
+                int n = 1;
+                for (Card card : atackPlayer.getEvockedUnits()) {
+                    System.out.println(n + ": " + card.toString());
+                    n++;
+                }
+                int select = sc.nextInt();
+                Card card = atackPlayer.getEvockedUnits().get(select-1);
+                atackPlayer.getEvockedUnits().remove(card);
+                board.toBattle(card);
+                System.out.println("Deseja jogar uma nova carta?(Digite 0 caso queira encerrar)");
+                newC = sc.nextInt();
+            } while(newC != 0 || atackPlayer.getEvockedUnits().size() > 0);
+            do {
+                System.out.println(defensePlayer.toString() + ", selecione a carta que você deseja usar para defender");
+                int n = 1;
+                for (Card card : defensePlayer.getEvockedUnits()) {
+                    System.out.println(n + ": " + card.toString());
+                    n++;
+                }
+                int select = sc.nextInt();
+                Card card = atackPlayer.getEvockedUnits().get(select-1);
+                defensePlayer.getEvockedUnits().remove(card);
+                System.out.println(defensePlayer.toString() + ", selecione que carta você deseja defender com essa carta");
+                board.showAtackField();
+                select = sc.nextInt();
+                board.toBattle(card,select-1);
+                newC = sc.nextInt();
+                System.out.println("Deseja jogar uma nova carta?(Digite 0 caso queira encerrar)");
+            }while(newC != 0 || defensePlayer.getEvockedUnits().size()>0);
         }
 
     }

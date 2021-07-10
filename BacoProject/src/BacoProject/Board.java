@@ -8,11 +8,16 @@ public class Board {
     ArrayList<Card> battlefieldAtack= new ArrayList<Card>();
     ArrayList<Card> battlefieldDefense = new ArrayList<Card>();
 
-    void toBattle(Card card, boolean atack){
-        if(atack){
-            battlefieldAtack.add(card);
-        }else{
-            battlefieldDefense.add(card);
+    void toBattle(Card card){
+        battlefieldAtack.add(card);
+    }
+    void toBattle(Card card, int index){
+        battlefieldDefense.add(index,card);
+    }
+    void showAtackField(){
+        for(Card card : battlefieldAtack){
+            int n = 1;
+            System.out.println(n+": "+ card.toString());
         }
     }
 
