@@ -36,8 +36,8 @@ public class Game {
         while (!exitSelected) {
             if(numTurn == 0){
                 getCard();
+                incrementMana();
             }
-            incrementMana();
             drawBoard();
             readInput();
             updateBoard();
@@ -51,7 +51,7 @@ public class Game {
 
     private void incrementMana() {
         for(Player i : players){
-            i.incrementMana(numTurn);
+            i.incrementMana(numRound);
         }
     }
 

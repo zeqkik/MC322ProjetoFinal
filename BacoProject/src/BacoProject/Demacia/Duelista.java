@@ -6,7 +6,7 @@ import BacoProject.Player;
 import BacoProject.iEffect;
 
 public class Duelista extends Follower implements iEffect, Lifeable {
-    public Duelista(Player player){
+    public Duelista(Player player) {
         super(player);
         super.name = "Duelista";
         this.manaCost = 3;
@@ -20,12 +20,12 @@ public class Duelista extends Follower implements iEffect, Lifeable {
     }
 
     @Override
-    public void lifeUp(int i){
+    public void lifeUp(int i) {
         this.life += i;
     }
 
     @Override
-    public void powerUp(int i){
+    public void powerUp(int i) {
         this.power -= i;
     }
 }
