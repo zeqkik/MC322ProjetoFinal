@@ -1,6 +1,6 @@
 package BacoProject;
 
-public class Champion extends Card{
+public class Champion extends Card implements Lifeable{
     protected int power;
     protected int life;
     protected int manaCost;
@@ -15,5 +15,14 @@ public class Champion extends Card{
     }
     public void powerUp(int n){
         power+=n;
+    }
+    public int attack(){return this.power;}
+    public void takeDamage(int i){ power-=i;}
+    public boolean isDead(){
+        if(life <= 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

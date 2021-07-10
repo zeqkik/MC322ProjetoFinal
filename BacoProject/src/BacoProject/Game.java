@@ -103,9 +103,9 @@ public class Game {
         }
         System.out.println(atackPlayer.toString()+", deseja entrar em batalha? Digite 1 para sim, 2 para não");
         Scanner sc = new Scanner(System.in);
-        int atack = sc.nextInt();
+        int battle = sc.nextInt();
         int newC = 1;
-        if(atack==1){
+        if(battle == 1){
             do {
                 System.out.println("Selecione a carta que deseja enviar para a batalha(Digite o id)");
 
@@ -132,7 +132,7 @@ public class Game {
                 Card card = atackPlayer.getEvockedUnits().get(select-1);
                 defensePlayer.getEvockedUnits().remove(card);
                 System.out.println(defensePlayer.toString() + ", selecione que carta você deseja defender com essa carta");
-                board.showAtackField();
+                board.showAttackField();
                 select = sc.nextInt();
                 board.toBattle(card,select-1);
                 newC = sc.nextInt();

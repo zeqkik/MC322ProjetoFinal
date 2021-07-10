@@ -160,6 +160,10 @@ public class Player {
         return this.mana;
     }
 
+    public void nexusDamage(int damage){
+        this.nexusLife -= damage;
+    }
+
     public ArrayList<Card> getEvockedUnits(){
         return evockedUnits;
     }

@@ -11,7 +11,6 @@ public class Card {
     public String toString(){
         return this.name;
     }
-
     public int getMana() {
         return this.manaCost;
     }
