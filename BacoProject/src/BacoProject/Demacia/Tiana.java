@@ -5,7 +5,9 @@ import BacoProject.Player;
 import BacoProject.iEffect;
 
 public class Tiana extends Follower implements iEffect {
-    public Tiana(){
+    public Tiana(Player player){
+        super(player);
+        super.name = "Tiana";
         super.manaCost = 8;
         super.power = 7;
         super.life = 7;

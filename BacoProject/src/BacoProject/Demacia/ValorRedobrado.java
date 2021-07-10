@@ -5,8 +5,11 @@ import BacoProject.Spell;
 import BacoProject.iEffect;
 
 public class ValorRedobrado extends Spell implements iEffect {
-    public ValorRedobrado(){
-        super.manaCost=6;
+
+    public ValorRedobrado(Player player){
+        super(player);
+        super.name = "ValorRedobrado";
+        super.manaCost = 6;
     }
     @Override
     public void playEffect() {

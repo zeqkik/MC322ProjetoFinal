@@ -9,7 +9,9 @@ public class Defensor extends Follower implements iEffect {
     private int furyN;
     private int furyM;
     private Trace trace=Trace.FURY;
-    public Defensor() {
+    public Defensor(Player player){
+        super(player);
+        super.name = "Defensor";
         this.manaCost = 2;
         this.power = 2;
         this.life = 2;

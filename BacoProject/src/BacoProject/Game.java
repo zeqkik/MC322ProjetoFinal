@@ -1,10 +1,15 @@
 package BacoProject;
 
+import com.sun.nio.sctp.SctpChannel;
+
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Game {
     ArrayList<Card> cards = new ArrayList<Card>();
-    ArrayList<Player> players = new ArrayList<Player>();
+    private Player player1;
+    private Player player2;
     private int numRound;
     private int numTurn;
 

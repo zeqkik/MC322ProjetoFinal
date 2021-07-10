@@ -5,7 +5,9 @@ import BacoProject.Player;
 import BacoProject.iEffect;
 
 public class PoroDefensor extends Follower implements iEffect {
-    public PoroDefensor(){
+    public PoroDefensor(Player player){
+        super(player);
+        super.name = "Poro Defensor";
         super.manaCost = 1;
         super.power = 1;
         super.life = 2;

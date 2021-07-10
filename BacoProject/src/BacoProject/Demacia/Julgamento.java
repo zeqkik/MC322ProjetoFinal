@@ -5,7 +5,9 @@ import BacoProject.Spell;
 import BacoProject.iEffect;
 
 public class Julgamento extends Spell implements iEffect {
-    public Julgamento(){
+    public Julgamento(Player player) {
+        super(player);
+        super.name = "Julgamento";
         super.manaCost = 8;
     }
 
