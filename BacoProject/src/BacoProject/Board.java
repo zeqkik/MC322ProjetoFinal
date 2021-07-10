@@ -10,8 +10,12 @@ public class Board {
     ArrayList<Card> battlefield1 = new ArrayList<Card>();
     ArrayList<Card> battlefield2 = new ArrayList<Card>();
 
-    void toBattle(Card card){
-
+    void toBattle(Card card, boolean atack){
+        if(atack){
+            battlefieldAtack.add(card);
+        }else{
+            battlefieldDefense.add(card);
+        }
     }
     //efetuar a batalha campo a campo
     //retornar nexus para player
