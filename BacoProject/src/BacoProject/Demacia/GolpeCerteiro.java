@@ -1,5 +1,6 @@
 package BacoProject.Demacia;
 
+import BacoProject.Player;
 import BacoProject.Spell;
 import BacoProject.iEffect;
 

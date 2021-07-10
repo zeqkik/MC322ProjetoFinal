@@ -1,6 +1,7 @@
 package BacoProject.Demacia;
 
 import BacoProject.Champion;
+import BacoProject.Player;
 import BacoProject.Trace;
 import BacoProject.iEffect;
 

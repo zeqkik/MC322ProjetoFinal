@@ -1,6 +1,7 @@
 package BacoProject.Demacia;
 
 import BacoProject.Follower;
+import BacoProject.Player;
 import BacoProject.iEffect;
 
 public class Duelista extends Follower implements iEffect {

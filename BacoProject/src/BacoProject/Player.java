@@ -1,20 +1,25 @@
 package BacoProject;
 
+import BacoProject.Demacia.*;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
-    int mana;
-    int nexusLife;
-    ArrayList<iCard> deck = new ArrayList<iCard>();
-    ArrayList<iCard> hands = new ArrayList<iCard>();
-    ArrayList<iCard> evockedUnits = new ArrayList<iCard>();
-    boolean attack = true;
+    private String name;
+    private int mana;
+    private int nexusLife;
+    private ArrayList<Card> deck = new ArrayList<Card>();
+    private ArrayList<Card> hands = new ArrayList<Card>();
+    private ArrayList<Card> evockedUnits = new ArrayList<Card>();
+    private boolean attack = true;
 
     public Player() {
         this.mana = 0;
         this.nexusLife = 20;
+        getRandomDeck();
+
     }
 
     //pega do deck
@@ -52,7 +57,7 @@ public class Player {
         }
     }
 
-    public iCard evoke() {
+    public void evoke() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Selecione a carta que deseja invocar");
         //colocar um print com as listas de cartas em mãos
@@ -62,13 +67,25 @@ public class Player {
         if (choose_card > hands.size()) {
             System.out.println("Posicao invalida");
         }
-        if (this.mana < hands.get(hands.indexOf(choose_card)).getMana()){
+        if (this.mana < hands.get(choose_card).getMana()){
             System.out.println("Pontos de mana insuficiente");
         }
-        else
-            this.mana = this.mana - hands.get(hands.indexOf(choose_card)).getMana();
+        else {
+            try {
+                checkSizeEvockeUnits();
+                this.mana = this.mana - hands.get(choose_card).getMana();
+                this.evockedUnits.add(hands.get(choose_card));
+                hands.remove(choose_card);
+            } catch (SizeException e){
+                evoke();
+            }
+        }
+    }
 
-        return hands.get(hands.indexOf(choose_card));
+    private void checkSizeEvockeUnits() throws SizeException {
+        if(evockedUnits.size() > 6){
+            throw new SizeException("Nao eh possivel evocar. Voce ja envocou 6 cartas.");
+        }
     }
 
     public boolean attackDefense(){
@@ -98,6 +115,10 @@ public class Player {
         attack = b;
     }
 
+    public boolean getAttack() {
+        return attack;
+    }
+
     public void incrementMana(int turn) {
         if(this.mana + turn > 10){
             this.mana = 10;
@@ -111,5 +132,13 @@ public class Player {
 
     public int getMana() {
         return this.mana;
+    }
+
+    public ArrayList<Card> getEvockedUnits(){
+        return evockedUnits;
+    }
+
+    public String toString(){
+        return this.name;
     }
 }
