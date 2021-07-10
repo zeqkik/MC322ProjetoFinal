@@ -7,6 +7,7 @@ public class Game {
     ArrayList<Card> cards = new ArrayList<Card>();
     private Player player1;
     private Player player2;
+    ArrayList<Player> players = new ArrayList<Player>();
     private int numRound;
     private int numTurn;
 
