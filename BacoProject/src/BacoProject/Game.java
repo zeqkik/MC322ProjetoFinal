@@ -93,8 +93,6 @@ public class Game {
             if(i.getMana() > 3){
                 i.incrementMana(3-i.getMana());
             }
-
-
         }
     }
 
@@ -103,5 +101,44 @@ public class Game {
             i.getCard();
         }
     }
+
+    private void initBattle() {
+        Player atackPlayer = null;
+        Player defensePlayer = null;
+        if(player1.getAttack()){
+            atackPlayer = player1;
+            defensePlayer = player2;
+        }else{
+            atackPlayer = player2;
+            defensePlayer = player2;
+        }
+        System.out.println(atackPlayer.toString()+", deseja entrar em batalha? Digite 1 para sim, 2 para não");
+        Scanner sc = new Scanner(System.in);
+        int atack = sc.nextInt();
+        if(atack==1){
+            System.out.println("Selecione a carta que deseja enviar para a batalha(Digite o id)");
+            int n = 1;
+            for (Card card : atackPlayer.getEvockedUnits()) {
+                System.out.println(n + ": " + card.toString());
+                 n++;
+            }
+            //colocar no battlefield
+            System.out.println(defensePlayer.toString()+", selecione as cartas que você deseja usar para defender")
+            for (Card card : defensePlayer.getEvockedUnits()) {
+                System.out.println(n + ": " + card.toString());
+                //percorrer battlefield ataque e perguntar "quem vc quer defender com essa carta"
+
+                //evocar essa carta no battlefield defesa no mesmo indice do battlefield ataque
+                n++;
+            }
+            int select = sc.nextInt();
+
+        }
+    }
+
+
+
+
 }
+
 

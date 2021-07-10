@@ -7,7 +7,9 @@ import BacoProject.iEffect;
 
 public class Garen extends Champion implements iEffect {
     private int attackCounter = 0;
-    public Garen(){
+    public Garen(Player player){
+        super(player);
+        super.name = "Garen";
         super.manaCost = 5;
         super.power = 5;
         super.life = 5;
