@@ -57,7 +57,7 @@ public class Player {
                 }
             }
         }
-        printHand();
+        cardsToString(hand);
     }
 
     public void changeCards() {
@@ -97,8 +97,7 @@ public class Player {
             return;
         }
 
-        if (hand.get(choose_card) instanceof iSpell) {
-            iSpell spell = (iSpell) hand.get(choose_card);
+        if (hand.get(choose_card) instanceof iSpell spell) {
             if (this.spellMana < spell.getMana()) {
                 System.out.println("Pontos de mana insuficientes.");
                 evoke();
@@ -109,12 +108,23 @@ public class Player {
             }
         }
 
-        System.out.println("Digite 0 caso queira evocar uma carta nova e 1 caso deseje substituir uma carta ja evocada.");
+        evockeLifeable(choose_card);
+        System.out.println("Deseja evocar uma nova carta?(Digite 1 para evocar)");
+        int newEvocate = sc.nextInt();
+        if(newEvocate == 1){
+            this.evoke();
+        }
+    }
+
+    private void evockeLifeable(int choose_card) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Digite 0 caso queira evocar como uma carta nova, 1 caso deseje substituir uma carta ja evocada ou 2 caso deseja escolher outra carta para evocar.");
         int evockeOrChange = sc.nextInt();
 
         if (evockeOrChange == 0) {
             if (this.mana < hand.get(choose_card).getMana()) {
                 System.out.println("Pontos de mana insuficiente");
+                evockeLifeable(choose_card);
             } else {
                 try {
                     checkSizeEvockeUnits();
@@ -122,23 +132,26 @@ public class Player {
                     this.evockedUnits.add(hand.get(choose_card));
                     hand.remove(choose_card);
                 } catch (SizeException e) {
-                    evoke();
-                    return;
+                    evockeLifeable(choose_card);
                 }
             }
         } else if (evockeOrChange == 1) {
             if (this.evockedUnits.size() == 0) {
                 System.out.println("Voce nao tem cartas evocadas.");
+                evockeLifeable(choose_card);
             } else {
-                deckToString(evockedUnits);
+                cardsToString(evockedUnits);
                 int choose_evocked = sc.nextInt(); //recebe a posição da carta
 
                 if (choose_evocked > evockedUnits.size()) {
                     System.out.println("Posicao invalida");
+                    evockeLifeable(choose_card);
+                    return;
                 }
 
                 if (hand.get(choose_card).getMana() - this.evockedUnits.get(choose_evocked).getMana() > this.mana) {
                     System.out.println("Pontos de mana insuficiente");
+                    evockeLifeable(choose_card);
                 } else {
                     try {
                         checkSizeEvockeUnits();
@@ -148,11 +161,12 @@ public class Player {
                         this.evockedUnits.remove(choose_evocked);
                         this.hand.remove(choose_card);
                     } catch (SizeException e) {
-                        evoke();
-                        return;
+                        evockeLifeable(choose_card);
                     }
                 }
             }
+        } else if(evockeOrChange == 2){
+            evoke();
         }
     }
 
@@ -228,13 +242,6 @@ public class Player {
 
     public ArrayList<Card> getEvockedUnits() {
         return evockedUnits;
-    }
-
-    private void printHand() {
-        int id = 1;
-        for (Card card : hand) {
-            System.out.println(id + ": " + card);
-        }
     }
 
     public boolean isDead() {

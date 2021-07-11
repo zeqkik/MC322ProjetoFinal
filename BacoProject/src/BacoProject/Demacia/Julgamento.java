@@ -13,7 +13,7 @@ public class Julgamento extends Card implements iSpell {
     @Override
     public void playEffect() {
         //um aliado atacante golpeia todos oponentes defensores
-        owner.deckToString(owner.getEvockedUnits());
+        owner.cardsToString(owner.getEvockedUnits());
         System.out.println("Selecione um aliado para golpear todos os oponentes defensores");
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();

@@ -5,25 +5,21 @@ import java.util.Scanner;
 
 public class Game {
     //ArrayList<Card> cards = new ArrayList<Card>();
-    private Player player1;
-    private Player player2;
     private ArrayList<Player> players = new ArrayList<Player>();
     private int numRound;
-    private int numTurn;
     private Board board;
-
+    private boolean hasBattle;
     private boolean exitSelected;
 
     public void start(Player player1, Player player2) {
         exitSelected = false;
         System.out.println("Game started!");
-        player1 = createPlayer("Camino");
-        player2 = createPlayer("Serpa");
+        Player player1 = createPlayer("Camino");
+        Player player2 = createPlayer("Serpa");
         player1.setAttack(true);
         player2.setAttack(false);
         board = createBoard();
         numRound = 0;
-        numTurn = 0;
 
         firstRound();
 
@@ -35,12 +31,14 @@ public class Game {
             }else{
                 System.out.println("Rodada do " + player2.toString() + " atacando.");
             }
+            hasBattle = false;
             drawTurn();
             evocateTurn();
             battleTurn();
-            updateBoard();
-            exitSelected = isNexusDead();
-            numTurn++;
+            if(hasBattle){
+                nextRound();
+                exitSelected = isNexusDead();
+            }
         }
         System.out.println("Game terminated. Bye!");
     }
@@ -66,11 +64,10 @@ public class Game {
 
 
     private void nextRound() {
-        numTurn = 0;
         for(Player i : players) {
 
             i.switchAttacker();
-
+            i.getCard(1);
             if(i.getMana() > 0){
                 i.incrementSpellMana(i.getMana());
                 i.incrementMana(i.getMana() * (-1));
@@ -150,8 +147,19 @@ public class Game {
     }
 
     private void evocateTurn() {
-        for (Player player : players) {
-            player.evoke();
+        Scanner sc = new Scanner(System.in);
+        int newEvocate = 0;
+        if(players.get(0).getAttack()) {
+            System.out.println("Turno de evocação do " + players.get(0).toString());
+                players.get(0).evoke();
+            System.out.println("Turno de evocação do " + players.get(1).toString());
+                players.get(1).evoke();
+        } else {
+                System.out.println("Turno de evocação do " + players.get(1).toString());
+                players.get(1).evoke();
+                System.out.println("Turno de evocação do " + players.get(0).toString());
+                players.get().evoke();
+            }
         }
     }
     private void battleTurn() {
@@ -159,7 +167,7 @@ public class Game {
         if (player1.getAttack()) {
             board.Battle(player1, player2);
         } else {
-            board.Battle(player2, player1);
+            board.Battle(players.get(1), players.get(0));
         }
         for(Player player : players){
             player.setMana();

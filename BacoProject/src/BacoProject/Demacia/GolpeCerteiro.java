@@ -12,7 +12,7 @@ public class GolpeCerteiro extends Card implements iSpell {
     @Override
     public void playEffect() {
         //dê +1/+1 a um aliado nesta rodada;
-        owner.deckToString(owner.getEvockedUnits());
+        owner.cardsToString(owner.getEvockedUnits());
         System.out.println("Selecione um aliado para dar +1/+1");
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
