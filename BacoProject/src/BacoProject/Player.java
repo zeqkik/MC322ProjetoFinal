@@ -11,7 +11,7 @@ public class Player {
     private int nexusLife;
     Deck deck;
     private ArrayList<Card> hand = new ArrayList<Card>();
-    private ArrayList<Lifeable> evockedUnits = new ArrayList<Lifeable>();
+    private ArrayList<Card> evockedUnits = new ArrayList<Card>();
     private boolean attack = true;
     private int numCards;
 

@@ -22,7 +22,6 @@ public class Julgamento extends Card implements iSpell {
             this.playEffect();
         } else{
             Lifeable card = (Lifeable) owner.getEvockedUnits().get(n);
-
             card.attack();
         }
     }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
-    //ArrayList<Card> cards = new ArrayList<Card>();
     private ArrayList<Player> players = new ArrayList<Player>();
     private int numRound;
     private Board board;
@@ -135,6 +134,8 @@ public class Game {
             player.getCard(1);
             player.incrementMana(numRound);
         }
+        System.out.println("Situação atual da mesa:");
+        board.showBoard();
     }
 
     private void evocateTurn() {
@@ -151,6 +152,7 @@ public class Game {
                 System.out.println("Turno de evocação do " + players.get(0).toString());
                 players.get(0).evoke();
             }
+        System.out.println("Situação atual da mesa:");
         }
 
     private void battleTurn() {
@@ -160,6 +162,7 @@ public class Game {
         } else {
             board.Battle(players.get(1), players.get(0));
         }
+        System.out.println("Situação atual da mesa:");
     }
 
     private boolean isNexusDead(){

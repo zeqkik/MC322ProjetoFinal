@@ -61,12 +61,12 @@ public class Board {
 
     public void showBoard(){
         System.out.println("Cartas evocadas do jogador 1:");
-        for (Lifeable card : evocatePlayer1) {
+        for (Lifeable card : evocateAttack) {
             int n = 1;
             System.out.println(n + ": " + card.toString());
         }
         System.out.println("Cartas evocadas do jogador 2:");
-        for (Lifeable card : evocatePlayer2) {
+        for (Lifeable card : evocateDefense) {
             int n = 1;
             System.out.println(n + ": " + card.toString());
         }

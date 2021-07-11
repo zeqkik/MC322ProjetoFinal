@@ -1,5 +1,5 @@
 package BacoProject;
-
+//esta igual a follower
 public class Card implements Lifeable{
     protected String name;
     protected Player owner;

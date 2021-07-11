@@ -1,6 +1,6 @@
 package BacoProject;
 
-public class Champion extends Card implements Lifeable{
+public abstract class Champion extends Card implements Lifeable{
     protected int power;
     protected int life;
     protected Trace trace;
@@ -34,4 +34,6 @@ public class Champion extends Card implements Lifeable{
     public void attack(Lifeable card){
         card.takeDamage(this.power);
     }
+    public abstract void levelUp();
+
 }
