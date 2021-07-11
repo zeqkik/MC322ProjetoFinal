@@ -3,11 +3,13 @@ package BacoProject;
 import java.util.ArrayList;
 
 public class Board {
+    ArrayList<Lifeable> evocatePlayer1 = new ArrayList<Lifeable>();
+    ArrayList<Lifeable> evocatePlayer2 = new ArrayList<Lifeable>();
     ArrayList<Lifeable> battlefieldAttack = new ArrayList<Lifeable>();
     ArrayList<Lifeable> battlefieldDefense = new ArrayList<Lifeable>();
 
-    public Board() {
-
+    void getEvocate(int n){
+        this
     }
 
     void toBattle(Card card) {
@@ -56,5 +58,17 @@ public class Board {
         return out;
     }
 
+    public void showBoard(){
+        System.out.println("Cartas evocadas do jogador 1:");
+        for (Lifeable card : evocatePlayer1) {
+            int n = 1;
+            System.out.println(n + ": " + card.toString());
+        }
+        System.out.println("Cartas evocadas do jogador 2:");
+        for (Lifeable card : evocatePlayer2) {
+            int n = 1;
+            System.out.println(n + ": " + card.toString());
+        }
+    }
 
 }

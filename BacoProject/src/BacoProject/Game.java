@@ -84,13 +84,15 @@ public class Game {
     private void initBattle() {
         Player atackPlayer = null;
         Player defensePlayer = null;
-        if (player1.getAttack()) {
-            atackPlayer = player1;
-            defensePlayer = player2;
+
+        if (players.get(0).getAttack()) {
+            atackPlayer = players.get(0);
+            defensePlayer = players.get(1);
         } else {
-            atackPlayer = player2;
-            defensePlayer = player2;
+            atackPlayer = players.get(0);
+            defensePlayer = players.get(1);
         }
+        //atackPlayer.getEvockedUnits()
         System.out.println(atackPlayer.toString() + ", deseja entrar em batalha? Digite 1 para sim, 2 para não");
         Scanner sc = new Scanner(System.in);
         int battle = sc.nextInt();
@@ -161,11 +163,11 @@ public class Game {
                 players.get().evoke();
             }
         }
-    }
+
     private void battleTurn() {
         this.initBattle();
-        if (player1.getAttack()) {
-            board.Battle(player1, player2);
+        if (players.get(0).getAttack()) {
+            board.Battle(players.get(0), players.get(1));
         } else {
             board.Battle(players.get(1), players.get(0));
         }

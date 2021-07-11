@@ -86,8 +86,7 @@ public class Player {
     public void evoke() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Selecione a carta que deseja invocar");
-        printHand();
-        deckToString(hand);
+        cardsToString(hand);
 
         int choose_card = sc.nextInt(); //recebe a posição da carta
 
@@ -170,7 +169,7 @@ public class Player {
         }
     }
 
-    public void deckToString(ArrayList<Card> cards) {
+    public void cardsToString(ArrayList<Card> cards) {
         int n = 1;
         for (Card card : cards) {
             System.out.println(n + ": " + card.toString());
