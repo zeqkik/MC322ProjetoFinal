@@ -11,7 +11,7 @@ public class Game {
     private boolean hasBattle;
     private boolean exitSelected;
 
-    public void start(Player player1, Player player2) {
+    public void start() {
         exitSelected = false;
         System.out.println("Game started!");
         Player player1 = createPlayer("Camino");
@@ -70,8 +70,8 @@ public class Game {
     }
 
     private void initBattle() {
-        Player atackPlayer = null;
-        Player defensePlayer = null;
+        Player atackPlayer;
+        Player defensePlayer;
 
         if (players.get(0).getAttack()) {
             atackPlayer = players.get(0);
@@ -80,7 +80,8 @@ public class Game {
             atackPlayer = players.get(0);
             defensePlayer = players.get(1);
         }
-        //atackPlayer.getEvockedUnits()
+        board.getEvocate(atackPlayer.getEvockedUnits(), defensePlayer.getEvockedUnits());
+
         System.out.println(atackPlayer.toString() + ", deseja entrar em batalha? Digite 1 para sim, 2 para não");
         Scanner sc = new Scanner(System.in);
         int battle = sc.nextInt();

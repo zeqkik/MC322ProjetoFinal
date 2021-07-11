@@ -3,13 +3,14 @@ package BacoProject;
 import java.util.ArrayList;
 
 public class Board {
-    ArrayList<Lifeable> evocatePlayer1 = new ArrayList<Lifeable>();
-    ArrayList<Lifeable> evocatePlayer2 = new ArrayList<Lifeable>();
+    ArrayList<Lifeable> evocateAttack = new ArrayList<Lifeable>();
+    ArrayList<Lifeable> evocateDefense = new ArrayList<Lifeable>();
     ArrayList<Lifeable> battlefieldAttack = new ArrayList<Lifeable>();
     ArrayList<Lifeable> battlefieldDefense = new ArrayList<Lifeable>();
 
-    void getEvocate(int n){
-        this
+    void getEvocate(ArrayList<Card> attack,ArrayList<Card> defense){
+        this.evocateAttack.addAll(attack);
+        this.evocateDefense.addAll(defense);
     }
 
     void toBattle(Card card) {

@@ -3,7 +3,6 @@ package BacoProject;
 public class Champion extends Card implements Lifeable{
     protected int power;
     protected int life;
-    protected int manaCost;
     protected Trace trace;
     protected int battlePosition;
 
