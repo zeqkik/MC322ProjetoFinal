@@ -14,7 +14,7 @@ public class Game {
 
     private boolean exitSelected;
 
-    public void start() {
+    public void start(Player player1, Player player2) {
         exitSelected = false;
         System.out.println("Game started!");
         player1 = createPlayer("Camino");
@@ -28,8 +28,13 @@ public class Game {
         firstRound();
 
         while (!exitSelected) {
-            drawBoard();
-            readInput();
+            //drawBoard();
+            //readInput();
+            if(player1.getAttack()) {
+                System.out.println("Rodada do " + player1.toString() + " atacando.");
+            }else{
+                System.out.println("Rodada do " + player2.toString() + " atacando.");
+            }
             drawTurn();
             evocateTurn();
             battleTurn();
@@ -140,7 +145,7 @@ public class Game {
     private void drawTurn(){
         for(Player player : players){
             player.getCard(1);
-            player.newMana(numRound);
+            player.incrementMana(numRound);
         }
     }
 
@@ -169,6 +174,15 @@ public class Game {
             }
         }
         return false;
+    }
+    public Player createPlayer(String name){
+        Player player = new Player(name);
+        players.add(player);
+        return player;
+    }
+    public Board createBoard(){
+        Board board = new Board();
+        return board;
     }
         /* sorta o embrev
         kkkkk

@@ -15,15 +15,12 @@ public class Player {
     private boolean attack = true;
     private int numCards;
 
-    public Player() {
+    public Player(String name) {
+        this.name = "name";
         this.mana = 0;
         this.spellMana = 0;
         this.nexusLife = 20;
         this.deck = new Deck(this);
-    }
-
-    public void takeDeck(Deck deck) {
-        this.deck = deck;
     }
 
     public void takeCard(int turn) {
