@@ -43,12 +43,6 @@ public class Game {
         System.out.println("Game terminated. Bye!");
     }
 
-    private void incrementMana() {
-        for(Player i : players){
-            i.incrementMana(numRound);
-        }
-    }
-
 //    private void drawBoard() {
 //
 //    }
@@ -69,16 +63,10 @@ public class Game {
             i.switchAttacker();
             i.getCard(1);
             if(i.getMana() > 0){
-                i.incrementSpellMana(i.getMana());
-                i.incrementMana(i.getMana() * (-1));
+                i.setMana();
             }
         }
-    }
-
-    private void getCard(){
-        for(Player i : players){
-            i.getCard(1);
-        }
+        numRound++;
     }
 
     private void initBattle() {
@@ -170,9 +158,6 @@ public class Game {
             board.Battle(players.get(0), players.get(1));
         } else {
             board.Battle(players.get(1), players.get(0));
-        }
-        for(Player player : players){
-            player.setMana();
         }
     }
 

@@ -223,14 +223,6 @@ public class Player {
         }
     }
 
-    public void incrementSpellMana(int n) {
-        if (n > 3) {
-            this.spellMana += 3;
-        } else if (n > 0 && n < 3) {
-            this.spellMana += n;
-        }
-    }
-
     public int getMana() {
         return this.mana;
     }
@@ -253,10 +245,10 @@ public class Player {
 
     public void setMana() {
         if (this.mana > 3) {
-            this.spellMana = 3;
+            this.spellMana += 3;
         }
         if (this.mana > 0 && this.mana <= 3) {
-            this.spellMana = this.mana;
+            this.spellMana += this.mana;
         }
         this.mana = 0;
     }
