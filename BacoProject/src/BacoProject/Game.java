@@ -160,7 +160,7 @@ public class Game {
                 System.out.println("Turno de evocação do " + players.get(1).toString());
                 players.get(1).evoke();
                 System.out.println("Turno de evocação do " + players.get(0).toString());
-                players.get().evoke();
+                players.get(0).evoke();
             }
         }
 
