@@ -1,30 +1,23 @@
 package BacoProject.Demacia;
 
-import BacoProject.Follower;
-import BacoProject.Lifeable;
-import BacoProject.Player;
-import BacoProject.iEffect;
+import BacoProject.*;
 
 public class Tiana extends Follower implements iEffect, Lifeable {
-    public Tiana(Player player){
-        super(player);
-        super.name = "Tiana";
+    public Tiana(Player player, String name, int id){
+        super(player, name, id);
         super.manaCost = 8;
         super.power = 7;
         super.life = 7;
+        this.battlePosition = -1;
     }
     @Override
     public void playEffect() {
         //ao ser comprada uma unidade evocada ataca o nexus
+
     }
 
     @Override
-    public void lifeUp(int i){
-        this.life += i;
-    }
+    public void update(Card kill, Card dead, int idKill, int idDead) {
 
-    @Override
-    public void powerUp(int i){
-        this.power -= i;
     }
 }

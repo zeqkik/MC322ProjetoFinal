@@ -14,6 +14,10 @@ public class Deck {
         this.player = player;
     }
 
+    public Deck(){
+
+    }
+
     public Card get(int i){
         return this.deck.get(i);
     }
@@ -38,43 +42,84 @@ public class Deck {
         Random ran = new Random();
 
         for (int i = 0; i < 40; i++) {
+            player.incrementNumCards();
             int j = ran.nextInt(11);
             switch (j) {
                 case 0:
-                    deck.add(new Garen(this.player));
+                    deck.add(new Garen(this.player, "Garen", i));
                     break;
                 case 1:
-                    deck.add(new Tiana(this.player));
+                    deck.add(new Tiana(this.player, "Tiana", i));
                     break;
                 case 2:
-                    deck.add(new Vanguarda(this.player));
+                    deck.add(new Vanguarda(this.player, "Vanguarda", i));
                     break;
                 case 3:
-                    deck.add(new Duelista(this.player));
+                    deck.add(new Duelista(this.player, "Duelista", i));
                     break;
                 case 4:
-                    deck.add(new Defensor(this.player));
+                    deck.add(new Defensor(this.player, "Defensor", i));
                     break;
                 case 5:
-                    deck.add(new Poro(this.player));
+                    deck.add(new Poro(this.player, "Poro", i));
                     break;
                 case 6:
-                    deck.add(new PoroDefensor(this.player));
+                    deck.add(new PoroDefensor(this.player, "Poro Defensor", i));
                     break;
                 case 7:
-                    deck.add(new Julgamento(this.player));
+                    deck.add(new Julgamento(this.player, "Julgamento", i));
                     break;
                 case 8:
-                    deck.add(new ValorRedobrado(this.player));
+                    deck.add(new ValorRedobrado(this.player, "Valor Redobrado", i));
                     break;
                 case 9:
-                    deck.add(new GolpeCerteiro(this.player));
+                    deck.add(new GolpeCerteiro(this.player, "Golpe Certeiro", i));
                     break;
                 case 10:
-                    deck.add(new CombateUmAUm(this.player));
+                    deck.add(new CombateUmAUm(this.player, "Vanguarda", i));
                     break;
             }
 
+        }
+    }
+
+    public Card getRandomCard(){
+        Random ran = new Random();
+        int j = ran.nextInt(11);
+        switch (j) {
+            case 0:
+                deck.add(new Garen(this.player, "Garen", i));
+                break;
+            case 1:
+                deck.add(new Tiana(this.player, "Tiana", i));
+                break;
+            case 2:
+                deck.add(new Vanguarda(this.player, "Vanguarda", i));
+                break;
+            case 3:
+                deck.add(new Duelista(this.player, "Duelista", i));
+                break;
+            case 4:
+                deck.add(new Defensor(this.player, "Defensor", i));
+                break;
+            case 5:
+                deck.add(new Poro(this.player, "Poro", i));
+                break;
+            case 6:
+                deck.add(new PoroDefensor(this.player, "Poro Defensor", i));
+                break;
+            case 7:
+                deck.add(new Julgamento(this.player, "Julgamento", i));
+                break;
+            case 8:
+                deck.add(new ValorRedobrado(this.player, "Valor Redobrado", i));
+                break;
+            case 9:
+                deck.add(new GolpeCerteiro(this.player, "Golpe Certeiro", i));
+                break;
+            case 10:
+                deck.add(new CombateUmAUm(this.player, "Vanguarda", i));
+                break;
         }
     }
 }

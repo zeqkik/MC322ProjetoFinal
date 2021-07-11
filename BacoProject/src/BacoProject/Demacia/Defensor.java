@@ -6,26 +6,25 @@ public class Defensor extends Follower implements iEffect, Lifeable {
     private int furyN;
     private int furyM;
     private Trace trace=Trace.FURY;
-    public Defensor(Player player){
-        super(player);
-        super.name = "Defensor";
+    public Defensor(Player player, String name, int id){
+        super(player, name, id);
         this.manaCost = 2;
         this.power = 2;
         this.life = 2;
+        this.battlePosition = -1;
     }
 
     @Override
     public void playEffect() {
-        //se destruir um seguidor do inimigo, adiciona uma carta "Poro" à mão
+        // Quando destruir um seguidor adversario ganhá +0/ +1.
+        this.power++;
     }
 
     @Override
-    public void lifeUp(int i){
-        this.life += i;
+    public void update(Card kill, Card dead, int idKill, int idDead) {
+        if(dead instanceof Follower && idKill == this.id){
+            this.playEffect();
+        }
     }
 
-    @Override
-    public void powerUp(int i){
-        this.power -= i;
-    }
 }

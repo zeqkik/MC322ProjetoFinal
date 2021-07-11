@@ -7,4 +7,5 @@ public interface Lifeable {
     public int attack();
     public void takeDamage(int i);
     public boolean isDead();
+    public void setBattlePosition(int i);
 }

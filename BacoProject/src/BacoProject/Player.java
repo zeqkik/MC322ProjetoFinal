@@ -13,6 +13,7 @@ public class Player {
     private ArrayList<Card> hands = new ArrayList<Card>();
     private ArrayList<Card> evockedUnits = new ArrayList<Card>();
     private boolean attack = true;
+    private int numCards;
 
     public Player() {
         this.mana = 0;
@@ -122,7 +123,7 @@ public class Player {
     }
 
     private void checkSizeEvockeUnits() throws SizeException {
-        if(evockedUnits.size() > 6){
+        if (evockedUnits.size() > 6) {
             throw new SizeException("Nao eh possivel evocar. Voce ja envocou 6 cartas.");
         }
     }
@@ -133,11 +134,11 @@ public class Player {
         }
     }
 
-    public void switchAttacker(){
+    public void switchAttacker() {
         this.attack = !this.attack;
     }
 
-    public void setAttack(boolean b){
+    public void setAttack(boolean b) {
         attack = b;
     }
 
@@ -146,12 +147,11 @@ public class Player {
     }
 
     public void incrementMana(int turn) {
-        if(this.mana + turn > 10){
+        if (this.mana + turn > 10) {
             this.mana = 10;
-        } else if(this.mana + turn < 0) {
+        } else if (this.mana + turn < 0) {
             this.mana = 0;
-        }
-        else {
+        } else {
             this.mana += turn;
         }
     }
@@ -164,7 +164,7 @@ public class Player {
         this.nexusLife -= damage;
     }
 
-    public ArrayList<Card> getEvockedUnits(){
+    public ArrayList<Card> getEvockedUnits() {
         return evockedUnits;
     }
 

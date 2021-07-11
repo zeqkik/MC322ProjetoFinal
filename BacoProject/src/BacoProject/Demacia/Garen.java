@@ -4,17 +4,30 @@ import BacoProject.*;
 
 public class Garen extends Champion implements iEffect, Lifeable {
     private int attackCounter = 0;
-    public Garen(Player player){
-        super(player);
-        super.name = "Garen";
+    private int numKills;
+    public Garen(Player player, String name, int id){
+        super(player, name, id);
         super.manaCost = 5;
         super.power = 5;
         super.life = 5;
+        super.battlePosition = -1;
+        this.numKills = 0;
+
     }
 
     @Override
     public void playEffect() {
         this.life = 5;
+    }
+
+    @Override
+    public void update(Card kill, Card dead, int idKill, int idDead) {
+        if(idKill == this.id && owner.getAttack()){
+            this.numKills ++;
+            if(numKills == 2){
+                this.levelUp();
+            }
+        }
     }
 
     public void levelUp() {
@@ -28,16 +41,7 @@ public class Garen extends Champion implements iEffect, Lifeable {
         if(attackCounter == 2){
             this.levelUp();
         }
-        return this.power;
+        return super.power;
     }
 
-    @Override
-    public void lifeUp(int i){
-        this.life += i;
-    }
-
-    @Override
-    public void powerUp(int i){
-        this.power -= i;
-    }
 }

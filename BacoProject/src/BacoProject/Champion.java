@@ -5,9 +5,10 @@ public class Champion extends Card implements Lifeable{
     protected int life;
     protected int manaCost;
     protected Trace trace;
+    protected int battlePosition;
 
-    public Champion(Player player) {
-        super(player);
+    public Champion(Player player, String name, int id) {
+        super(player, name, id);
     }
 
     public void lifeUp(int n){
@@ -24,5 +25,10 @@ public class Champion extends Card implements Lifeable{
         }else{
             return false;
         }
+    }
+
+    @Override
+    public void setBattlePosition(int i) {
+        this.battlePosition = i;
     }
 }

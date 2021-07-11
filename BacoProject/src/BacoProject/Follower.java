@@ -3,9 +3,10 @@ package BacoProject;
 public class Follower extends Card implements Lifeable {
     protected int power;
     protected int life;
+    protected int battlePosition;
 
-    public Follower(Player player) {
-        super(player);
+    public Follower(Player player, String name, int id) {
+        super(player, name, id);
     }
 
     public void lifeUp(int n) {
@@ -31,5 +32,10 @@ public class Follower extends Card implements Lifeable {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public void setBattlePosition(int i) {
+        this.battlePosition = i;
     }
 }

@@ -5,12 +5,12 @@ import BacoProject.*;
 import java.util.ArrayList;
 
 public class Vanguarda extends Follower implements iEffect, Lifeable{
-    public Vanguarda(Player player){
-        super(player);
-        super.name = "Vanguarda";
+    public Vanguarda(Player player, String name, int id){
+        super(player, name, id);
         super.manaCost = 4;
         super.power = 3;
         super.life = 3;
+        super.battlePosition = -1;
     }
     @Override
     public void playEffect() {
@@ -22,6 +22,11 @@ public class Vanguarda extends Follower implements iEffect, Lifeable{
                 aux.powerUp(1);
             }
         }
+    }
+
+    @Override
+    public void update(Card kill, Card dead, int idKill, int idDead) {
+
     }
 
 //    @Override
