@@ -10,12 +10,9 @@ public class Game {
     ArrayList<Player> players = new ArrayList<Player>();
     private int numRound = 0;
     private int numTurn = 0;
-    Board board;
-
-
-    public Game() {
-
-    }
+    Board board = new Board();
+    Deck deckPlayer1 = new Deck(player1);
+    Deck deckPlayer2 = new Deck(player2);
 
     private boolean exitSelected;
 
@@ -41,10 +38,8 @@ public class Game {
             evocateTurn();
             battleTurn();
             updateBoard();
+            exitSelected = isNexusDead();
             numTurn++;
-            if (numTurn > 10) {
-                nextRound();
-            }
         }
         System.out.println("Game terminated. Bye!");
     }
@@ -144,7 +139,9 @@ public class Game {
 
     private void firstRound(){
         numRound++;
-        Board board = new Board();//conferir
+        Board board = new Board();
+        player1.takeDeck(deckPlayer1);
+        player2.takeDeck(deckPlayer2);
         for(Player player : players){
             player.giveInitialCards();
             player.changeCards();
@@ -175,7 +172,14 @@ public class Game {
         }
     }
 
-
+    private boolean isNexusDead(){
+        for(Player player : players) {
+            if(player.isDead()) {
+                return true;
+            }
+        }
+        return false;
+    }
         /* sorta o embrev
         kkkkk
         eu e o neymar
@@ -205,7 +209,7 @@ public class Game {
                     Turno de Batalha
                     XJogadores defensor e atacanta alternam
                 Fim da Rodada.
-
+                    Deseja uma
          */
 
 

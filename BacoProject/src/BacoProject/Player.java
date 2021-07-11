@@ -9,7 +9,6 @@ public class Player {
     private int mana;
     private int spellMana;
     private int nexusLife;
-    //private ArrayList<Card> deck = new ArrayList<Card>();
     Deck deck;
     private ArrayList<Card> hand = new ArrayList<Card>();
     private ArrayList<Card> evockedUnits = new ArrayList<Card>();
@@ -20,11 +19,12 @@ public class Player {
         this.mana = 0;
         this.spellMana = 0;
         this.nexusLife = 20;
-        deck = new Deck(this);
-
     }
 
-    //pega do deck
+    public void takeDeck(Deck deck) {
+        this.deck = deck;
+    }
+
     public void takeCard(int turn) {
         Random ran = new Random();
         for (int i = 0; i < turn; i++) {
@@ -241,8 +241,25 @@ public class Player {
             System.out.println(id + ": " + card);
         }
     }
-
+    public boolean isDead(){
+        if(this.nexusLife<=0){
+            return true;
+        } else{
+            return false;
+        }
+    }
     public String toString() {
         return this.name;
     }
+
+    public void setMana(){
+        if(this.mana>3){
+           this.spellMana = 3;
+        }
+        if(this.mana >0 && this.mana <= 3){
+            this.spellMana = this.mana;
+        }
+        this.mana = 0;
+    }
+
 }
