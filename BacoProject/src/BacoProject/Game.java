@@ -79,8 +79,9 @@ public class Game {
 
             i.switchAttacker();
 
-            if(i.getMana() > 3){
-                i.incrementMana(3-i.getMana());
+            if(i.getMana() > 0){
+                i.incrementSpellMana(i.getMana());
+                i.incrementMana(i.getMana() * (-1));
             }
         }
     }
@@ -162,9 +163,17 @@ public class Game {
             player.evoke();
         }
     }
-    private void battleTurn(){
+    private void battleTurn() {
         this.initBattle();
+        if (player1.getAttack()) {
+            board.Battle(player1, player2);
+        } else {
+            board.Battle(player2, player1);
         }
+        for(Player player : players){
+            player.setMana();
+        }
+    }
 
 
         /* sorta o embrev
@@ -199,7 +208,7 @@ public class Game {
 
          */
 
-    }
+
 
 
 

@@ -12,7 +12,7 @@ public class PoroDefensor extends Follower implements iEffect, Lifeable {
     }
     @Override
     public void playEffect() {
-
+        owner.getCard(1);
     }
 
     @Override

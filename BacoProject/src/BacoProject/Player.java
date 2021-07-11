@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Player {
     private String name;
     private int mana;
+    private int spellMana;
     private int nexusLife;
     //private ArrayList<Card> deck = new ArrayList<Card>();
     Deck deck;
@@ -17,6 +18,7 @@ public class Player {
 
     public Player() {
         this.mana = 0;
+        this.spellMana = 0;
         this.nexusLife = 20;
         deck = new Deck(this);
 
@@ -92,6 +94,20 @@ public class Player {
 
         if (choose_card > hand.size()) {
             System.out.println("Posicao invalida");
+            evoke();
+            return;
+        }
+
+        if(hand.get(choose_card) instanceof Spell){
+            Spell spell = (Spell) hand.get(choose_card);
+            if(this.spellMana < spell.getMana()){
+                System.out.println("Pontos de mana insuficientes.");
+                evoke();
+                return;
+            } else {
+                spell.playEffect();
+                return;
+            }
         }
 
         System.out.println("Digite 0 caso queira evocar uma carta nova e 1 caso deseje substituir uma carta ja evocada.");
@@ -108,6 +124,7 @@ public class Player {
                     hand.remove(choose_card);
                 } catch (SizeException e) {
                     evoke();
+                    return;
                 }
             }
         } else if (evockeOrChange == 1) {
@@ -133,13 +150,14 @@ public class Player {
                         this.hand.remove(choose_card);
                     } catch (SizeException e) {
                         evoke();
+                        return;
                     }
                 }
             }
         }
     }
 
-    private void deckToString(ArrayList<Card> cards) {
+    public void deckToString(ArrayList<Card> cards) {
         int n = 1;
         for (Card card : cards) {
             System.out.println(n + ": " + card.toString());
@@ -159,15 +177,15 @@ public class Player {
         }
     }
 
-    public void addHandCard(Card card){
+    public void addHandCard(Card card) {
         hand.add(card);
     }
 
-    public void incrementNumCards(){
+    public void incrementNumCards() {
         numCards++;
     }
 
-    public int getNumCards(){
+    public int getNumCards() {
         return numCards;
     }
 
@@ -190,6 +208,14 @@ public class Player {
             this.mana = 0;
         } else {
             this.mana += turn;
+        }
+    }
+
+    public void incrementSpellMana(int n) {
+        if (n > 3) {
+            this.spellMana += 3;
+        } else if (n > 0 && n < 3) {
+            this.spellMana += n;
         }
     }
 

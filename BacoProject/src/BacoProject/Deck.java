@@ -39,88 +39,53 @@ public class Deck {
     }
 
     private void getRandomDeck() {
-        Random ran = new Random();
 
         for (int i = 0; i < 40; i++) {
-            player.incrementNumCards();
-            int j = ran.nextInt(11);
-            switch (j) {
-                case 0:
-                    deck.add(new Garen(this.player, "Garen", i));
-                    break;
-                case 1:
-                    deck.add(new Tiana(this.player, "Tiana", i));
-                    break;
-                case 2:
-                    deck.add(new Vanguarda(this.player, "Vanguarda", i));
-                    break;
-                case 3:
-                    deck.add(new Duelista(this.player, "Duelista", i));
-                    break;
-                case 4:
-                    deck.add(new Defensor(this.player, "Defensor", i));
-                    break;
-                case 5:
-                    deck.add(new Poro(this.player, "Poro", i));
-                    break;
-                case 6:
-                    deck.add(new PoroDefensor(this.player, "Poro Defensor", i));
-                    break;
-                case 7:
-                    deck.add(new Julgamento(this.player, "Julgamento", i));
-                    break;
-                case 8:
-                    deck.add(new ValorRedobrado(this.player, "Valor Redobrado", i));
-                    break;
-                case 9:
-                    deck.add(new GolpeCerteiro(this.player, "Golpe Certeiro", i));
-                    break;
-                case 10:
-                    deck.add(new CombateUmAUm(this.player, "Vanguarda", i));
-                    break;
-            }
-
+            deck.add(getRandomCard());
         }
     }
 
     public Card getRandomCard(){
         Random ran = new Random();
+        Card aux = null;
         int j = ran.nextInt(11);
         switch (j) {
             case 0:
-                deck.add(new Garen(this.player, "Garen", i));
+                aux = new Garen(this.player, "Garen", player.getNumCards());
                 break;
             case 1:
-                deck.add(new Tiana(this.player, "Tiana", i));
+                aux = new Tiana(this.player, "Tiana", player.getNumCards());
                 break;
             case 2:
-                deck.add(new Vanguarda(this.player, "Vanguarda", i));
+                aux = new Vanguarda(this.player, "Vanguarda", player.getNumCards());
                 break;
             case 3:
-                deck.add(new Duelista(this.player, "Duelista", i));
+                aux = new Duelista(this.player, "Duelista", player.getNumCards());
                 break;
             case 4:
-                deck.add(new Defensor(this.player, "Defensor", i));
+                aux = new Defensor(this.player, "Defensor", player.getNumCards());
                 break;
             case 5:
-                deck.add(new Poro(this.player, "Poro", i));
+                aux = new Poro(this.player, "Poro", player.getNumCards());
                 break;
             case 6:
-                deck.add(new PoroDefensor(this.player, "Poro Defensor", i));
+                aux = new PoroDefensor(this.player, "Poro Defensor", player.getNumCards());
                 break;
             case 7:
-                deck.add(new Julgamento(this.player, "Julgamento", i));
+                aux = new Julgamento(this.player, "Julgamento", player.getNumCards());
                 break;
             case 8:
-                deck.add(new ValorRedobrado(this.player, "Valor Redobrado", i));
+                aux = new ValorRedobrado(this.player, "Valor Redobrado", player.getNumCards());
                 break;
             case 9:
-                deck.add(new GolpeCerteiro(this.player, "Golpe Certeiro", i));
+                aux = new GolpeCerteiro(this.player, "Golpe Certeiro", player.getNumCards());
                 break;
             case 10:
-                deck.add(new CombateUmAUm(this.player, "Vanguarda", i));
+                aux = new CombateUmAUm(this.player, "Vanguarda", player.getNumCards());
                 break;
         }
+        player.incrementNumCards();
+        return aux;
     }
 }
 

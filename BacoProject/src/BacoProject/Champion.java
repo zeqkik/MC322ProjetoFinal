@@ -31,4 +31,8 @@ public class Champion extends Card implements Lifeable{
     public void setBattlePosition(int i) {
         this.battlePosition = i;
     }
+
+    public void attack(Lifeable card){
+        card.takeDamage(this.power);
+    }
 }

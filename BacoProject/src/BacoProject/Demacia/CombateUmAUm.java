@@ -13,6 +13,7 @@ public class CombateUmAUm extends Spell implements iEffect {
     @Override
     public void playEffect() {
         //escolhe um aliado e um oponente para um combate imediato
+
     }
 
     @Override
