@@ -40,6 +40,10 @@ public class Board {
                     battlefieldAttack.remove(aux);
                 }
             }
+            for(Card card1 : battlefieldAttack){
+
+                battlefieldAttack.remove(card);
+            }
         }
     }
 
