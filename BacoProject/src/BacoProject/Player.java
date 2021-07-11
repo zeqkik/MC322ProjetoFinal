@@ -10,7 +10,7 @@ public class Player {
     private int nexusLife;
     //private ArrayList<Card> deck = new ArrayList<Card>();
     Deck deck;
-    private ArrayList<Card> hands = new ArrayList<Card>();
+    private ArrayList<Card> hand = new ArrayList<Card>();
     private ArrayList<Card> evockedUnits = new ArrayList<Card>();
     private boolean attack = true;
     private int numCards;
@@ -27,12 +27,12 @@ public class Player {
         Random ran = new Random();
         for (int i = 0; i < turn; i++) {
             int j = ran.nextInt(deck.size());
-            hands.add(deck.get(j));
+            hand.add(deck.get(j));
             try {
                 checkSizeDeck();
                 deck.remove(j);
             } catch (SizeException e) {
-                hands.remove(j);
+                hand.remove(j);
             }
         }
     }
@@ -40,19 +40,44 @@ public class Player {
     public void giveInitialCards() {
         Random ran = new Random();
         for (int i = 0; i < 4; i++) {
-            hands.add(deck.get(ran.nextInt(deck.size())));
+            hand.add(deck.get(ran.nextInt(deck.size())));
         }
     }
 
-    public void getCard(){
-        if(deck.size()>0){
-            hands.add(deck.get(0));
-            try{
-                checkSizeDeck();
-                deck.remove(0);
-            } catch (SizeException e) {
-                System.out.println("Nao foi possivel adicionar a carta. Sua mao ja esta cheia.");
-                hands.remove(deck.get(0));
+    public void getCard(int n) {
+        for (int i = 0; i < n; i++) {
+            if (deck.size() > 0) {
+                hand.add(deck.get(0));
+                try {
+                    checkSizeDeck();
+                    deck.remove(0);
+                } catch (SizeException e) {
+                    System.out.println("Nao foi possivel adicionar a carta. Sua mao ja esta cheia.");
+                    hand.remove(deck.get(0));
+                }
+            }
+        }
+        printHand();
+    }
+
+    public void changeCards() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Deseja trocar alguma das cartas?(Digite 1 caso queira)");
+        int change = sc.nextInt();
+        if (change == 1) {
+            int quant = 0;
+            do {
+                System.out.println("Quantas cartas você deseja substituir(De 0 a 4)");
+                quant = sc.nextInt();
+                if (quant < 0 || quant > 4) {
+                    System.out.println("Valor inválido! Digite novamente");
+                }
+            } while (quant > 0 && quant < 5);
+            for (int i = 1; i < quant; i++) {
+                System.out.println("Digite o id da " + i + "º carta:");
+                int id = sc.nextInt();
+                hand.remove(i - 1);
+                hand.add(deck.get(0));
             }
         }
     }
@@ -60,12 +85,12 @@ public class Player {
     public void evoke() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Selecione a carta que deseja invocar");
-        //colocar um print com as listas de cartas em mãos
-        deckToString(hands);
+        printHand();
+        deckToString(hand);
 
         int choose_card = sc.nextInt(); //recebe a posição da carta
 
-        if (choose_card > hands.size()) {
+        if (choose_card > hand.size()) {
             System.out.println("Posicao invalida");
         }
 
@@ -73,14 +98,14 @@ public class Player {
         int evockeOrChange = sc.nextInt();
 
         if (evockeOrChange == 0) {
-            if (this.mana < hands.get(choose_card).getMana()) {
+            if (this.mana < hand.get(choose_card).getMana()) {
                 System.out.println("Pontos de mana insuficiente");
             } else {
                 try {
                     checkSizeEvockeUnits();
-                    this.mana = this.mana - hands.get(choose_card).getMana();
-                    this.evockedUnits.add(hands.get(choose_card));
-                    hands.remove(choose_card);
+                    this.mana = this.mana - hand.get(choose_card).getMana();
+                    this.evockedUnits.add(hand.get(choose_card));
+                    hand.remove(choose_card);
                 } catch (SizeException e) {
                     evoke();
                 }
@@ -96,16 +121,16 @@ public class Player {
                     System.out.println("Posicao invalida");
                 }
 
-                if (hands.get(choose_card).getMana() - this.evockedUnits.get(choose_evocked).getMana() > this.mana) {
+                if (hand.get(choose_card).getMana() - this.evockedUnits.get(choose_evocked).getMana() > this.mana) {
                     System.out.println("Pontos de mana insuficiente");
                 } else {
                     try {
                         checkSizeEvockeUnits();
-                        this.mana = this.mana - hands.get(choose_card).getMana() + evockedUnits.get(choose_evocked).getMana();
-                        this.evockedUnits.add(hands.get(choose_card));
-                        this.hands.add(evockedUnits.get(choose_evocked));
+                        this.mana = this.mana - hand.get(choose_card).getMana() + evockedUnits.get(choose_evocked).getMana();
+                        this.evockedUnits.add(hand.get(choose_card));
+                        this.hand.add(evockedUnits.get(choose_evocked));
                         this.evockedUnits.remove(choose_evocked);
-                        this.hands.remove(choose_card);
+                        this.hand.remove(choose_card);
                     } catch (SizeException e) {
                         evoke();
                     }
@@ -114,7 +139,7 @@ public class Player {
         }
     }
 
-    private void deckToString(ArrayList<Card> cards){
+    private void deckToString(ArrayList<Card> cards) {
         int n = 1;
         for (Card card : cards) {
             System.out.println(n + ": " + card.toString());
@@ -129,9 +154,21 @@ public class Player {
     }
 
     private void checkSizeDeck() throws SizeException {
-        if (hands.size() > 10) {
+        if (hand.size() > 10) {
             throw new SizeException("Numero de cartas invalido.");
         }
+    }
+
+    public void addHandCard(Card card){
+        hand.add(card);
+    }
+
+    public void incrementNumCards(){
+        numCards++;
+    }
+
+    public int getNumCards(){
+        return numCards;
     }
 
     public void switchAttacker() {
@@ -160,7 +197,11 @@ public class Player {
         return this.mana;
     }
 
-    public void nexusDamage(int damage){
+    public void newMana(int n) {
+        this.mana += n;
+    }
+
+    public void nexusDamage(int damage) {
         this.nexusLife -= damage;
     }
 
@@ -168,7 +209,14 @@ public class Player {
         return evockedUnits;
     }
 
-    public String toString(){
+    private void printHand() {
+        int id = 1;
+        for (Card card : hand) {
+            System.out.println(id + ": " + card);
+        }
+    }
+
+    public String toString() {
         return this.name;
     }
 }
