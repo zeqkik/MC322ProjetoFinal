@@ -2,10 +2,9 @@ package BacoProject.Demacia;
 
 import BacoProject.Card;
 import BacoProject.Player;
-import BacoProject.Spell;
-import BacoProject.iEffect;
+import BacoProject.iSpell;
 
-public class ValorRedobrado extends Spell implements iEffect {
+public class ValorRedobrado extends Card implements iSpell {
 
     public ValorRedobrado(Player player, String name, int id){
         super(player, name, id);
@@ -17,8 +16,4 @@ public class ValorRedobrado extends Spell implements iEffect {
         //Cure inteiramente um aliado; dobre o ataque e defesa deste aliado;
     }
 
-    @Override
-    public void update(Card kill, Card dead, int idKill, int idDead) {
-
-    }
 }

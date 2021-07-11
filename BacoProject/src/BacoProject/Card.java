@@ -17,5 +17,8 @@ public class Card {
     public int getMana() {
         return this.manaCost;
     }
+    public int getId(){
+        return this.id;
+    }
 
 }

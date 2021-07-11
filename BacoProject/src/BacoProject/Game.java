@@ -4,28 +4,24 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
-    ArrayList<Card> cards = new ArrayList<Card>();
+    //ArrayList<Card> cards = new ArrayList<Card>();
     private Player player1;
     private Player player2;
-    ArrayList<Player> players = new ArrayList<Player>();
-    private int numRound = 0;
-    private int numTurn = 0;
-    Board board = new Board();
-    Deck deckPlayer1 = new Deck(player1);
-    Deck deckPlayer2 = new Deck(player2);
+    private ArrayList<Player> players = new ArrayList<Player>();
+    private int numRound;
+    private int numTurn;
+    private Board board;
 
     private boolean exitSelected;
 
     public void start() {
         exitSelected = false;
         System.out.println("Game started!");
-        Player player1 = new Player();
+        player1 = createPlayer("Camino");
+        player2 = createPlayer("Serpa");
         player1.setAttack(true);
-        Player player2 = new Player();
         player2.setAttack(false);
-        players.add(player1);
-        players.add(player2);
-        giveInitialCards();
+        board = createBoard();
         numRound = 0;
         numTurn = 0;
 
@@ -50,23 +46,19 @@ public class Game {
         }
     }
 
-    private void drawBoard() {
+//    private void drawBoard() {
+//
+//    }
+//
+//    private void readInput() {
+//
+//    }
+//
+//    private void updateBoard() {
+//
+//    }
 
-    }
 
-    private void readInput() {
-
-    }
-
-    private void updateBoard() {
-
-    }
-
-    private void giveInitialCards() {
-        for (Player i : players) {
-            i.giveInitialCards();
-        }
-    }
 
     private void nextRound() {
         numTurn = 0;
@@ -139,9 +131,6 @@ public class Game {
 
     private void firstRound(){
         numRound++;
-        Board board = new Board();
-        player1.takeDeck(deckPlayer1);
-        player2.takeDeck(deckPlayer2);
         for(Player player : players){
             player.giveInitialCards();
             player.changeCards();
@@ -175,6 +164,7 @@ public class Game {
     private boolean isNexusDead(){
         for(Player player : players) {
             if(player.isDead()) {
+                System.out.println(player.toString() + ", voce perdeu! Seu Nexus esta morto.");
                 return true;
             }
         }

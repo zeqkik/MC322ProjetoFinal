@@ -19,6 +19,7 @@ public class Player {
         this.mana = 0;
         this.spellMana = 0;
         this.nexusLife = 20;
+        this.deck = new Deck(this);
     }
 
     public void takeDeck(Deck deck) {
@@ -68,16 +69,17 @@ public class Player {
         int change = sc.nextInt();
         if (change == 1) {
             int quant = 0;
-            do {
-                System.out.println("Quantas cartas você deseja substituir(De 0 a 4)");
-                quant = sc.nextInt();
-                if (quant < 0 || quant > 4) {
-                    System.out.println("Valor inválido! Digite novamente");
-                }
-            } while (quant > 0 && quant < 5);
+            System.out.println("Quantas cartas você deseja substituir(De 0 a 4)");
+            quant = sc.nextInt();
+            if (quant < 0 || quant > 4) {
+                System.out.println("Valor inválido! Digite novamente");
+                this.changeCards();
+                return;
+            }
             for (int i = 1; i < quant; i++) {
                 System.out.println("Digite o id da " + i + "º carta:");
                 int id = sc.nextInt();
+                deck.add(hand.get(i-1));
                 hand.remove(i - 1);
                 hand.add(deck.get(0));
             }
@@ -98,9 +100,9 @@ public class Player {
             return;
         }
 
-        if(hand.get(choose_card) instanceof Spell){
-            Spell spell = (Spell) hand.get(choose_card);
-            if(this.spellMana < spell.getMana()){
+        if (hand.get(choose_card) instanceof iSpell) {
+            iSpell spell = (iSpell) hand.get(choose_card);
+            if (this.spellMana < spell.getMana()) {
                 System.out.println("Pontos de mana insuficientes.");
                 evoke();
                 return;
@@ -223,10 +225,6 @@ public class Player {
         return this.mana;
     }
 
-    public void newMana(int n) {
-        this.mana += n;
-    }
-
     public void nexusDamage(int damage) {
         this.nexusLife -= damage;
     }
@@ -241,25 +239,28 @@ public class Player {
             System.out.println(id + ": " + card);
         }
     }
-    public boolean isDead(){
-        if(this.nexusLife<=0){
-            return true;
-        } else{
-            return false;
-        }
+
+    public boolean isDead() {
+        return this.nexusLife <= 0;
     }
+
     public String toString() {
         return this.name;
     }
 
-    public void setMana(){
-        if(this.mana>3){
-           this.spellMana = 3;
+    public void setMana() {
+        if (this.mana > 3) {
+            this.spellMana = 3;
         }
-        if(this.mana >0 && this.mana <= 3){
+        if (this.mana > 0 && this.mana <= 3) {
             this.spellMana = this.mana;
         }
         this.mana = 0;
     }
 
+    public void returnToEvockedUnits(ArrayList<Lifeable> battlefield) {
+        for (Lifeable card : battlefield) {
+            evockedUnits.add((Card) card);
+        }
+    }
 }

@@ -4,7 +4,7 @@ import BacoProject.*;
 
 import java.util.Scanner;
 
-public class Julgamento extends Spell implements iEffect {
+public class Julgamento extends Card implements iSpell {
     public Julgamento(Player player, String name, int id) {
         super(player, name, id);
         super.manaCost = 8;
@@ -25,10 +25,5 @@ public class Julgamento extends Spell implements iEffect {
 
             card.attack();
         }
-    }
-
-    @Override
-    public void update(Card kill, Card dead, int idKill, int idDead) {
-
     }
 }

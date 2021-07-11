@@ -4,7 +4,7 @@ import BacoProject.*;
 
 import java.util.Scanner;
 
-public class GolpeCerteiro extends Spell implements iEffect {
+public class GolpeCerteiro extends Card implements iSpell {
     public GolpeCerteiro(Player player, String name, int id) {
         super(player, name, id);
         super.manaCost = 1;
@@ -24,10 +24,5 @@ public class GolpeCerteiro extends Spell implements iEffect {
             card.lifeUp(1);
             card.powerUp(1);
         }
-    }
-
-    @Override
-    public void update(Card kill, Card dead, int idKill, int idDead) {
-
     }
 }

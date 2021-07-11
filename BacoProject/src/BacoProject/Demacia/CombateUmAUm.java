@@ -2,10 +2,9 @@ package BacoProject.Demacia;
 
 import BacoProject.Card;
 import BacoProject.Player;
-import BacoProject.Spell;
-import BacoProject.iEffect;
+import BacoProject.iSpell;
 
-public class CombateUmAUm extends Spell implements iEffect {
+public class CombateUmAUm extends Card implements iSpell {
     public CombateUmAUm(Player player, String name, int id) {
         super(player, name, id);
         super.manaCost = 2;
@@ -16,8 +15,4 @@ public class CombateUmAUm extends Spell implements iEffect {
 
     }
 
-    @Override
-    public void update(Card kill, Card dead, int idKill, int idDead) {
-
-    }
 }

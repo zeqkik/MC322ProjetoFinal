@@ -22,6 +22,10 @@ public class Deck {
         return this.deck.get(i);
     }
 
+    public void add(Card card){
+        this.deck.add(card);
+    }
+
     public void remove(Card card){
         this.deck.remove(card);
     }
@@ -39,7 +43,6 @@ public class Deck {
     }
 
     private void getRandomDeck() {
-
         for (int i = 0; i < 40; i++) {
             deck.add(getRandomCard());
         }

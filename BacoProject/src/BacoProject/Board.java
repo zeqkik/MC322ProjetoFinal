@@ -3,50 +3,58 @@ package BacoProject;
 import java.util.ArrayList;
 
 public class Board {
-    ArrayList<Card> battlefieldAttack= new ArrayList<Card>();
-    ArrayList<Card> battlefieldDefense = new ArrayList<Card>();
+    ArrayList<Lifeable> battlefieldAttack = new ArrayList<Lifeable>();
+    ArrayList<Lifeable> battlefieldDefense = new ArrayList<Lifeable>();
 
-    void toBattle(Card card){
-        battlefieldAttack.add(card);
+    public Board() {
+
     }
-    void toBattle(Card card, int index){
-        battlefieldDefense.add(index,card);
+
+    void toBattle(Card card) {
+        battlefieldAttack.add((Lifeable) card);
     }
-    void showAttackField(){
-        for(Card card : battlefieldAttack){
+
+    void toBattle(Card card, int index) {
+        battlefieldDefense.add(index, (Lifeable) card);
+    }
+
+    void showAttackField() {
+        for (Lifeable card : battlefieldAttack) {
             int n = 1;
-            System.out.println(n+": "+ card.toString());
+            System.out.println(n + ": " + card.toString());
         }
     }
 
-    void Battle(Player atackPlayer, Player defensePlayer){
-        for(Card card : battlefieldAttack){
+    void Battle(Player attackPlayer, Player defensePlayer) {
+        for (Lifeable attacker : battlefieldAttack) {
             int id = 0;
-            Lifeable aux = (Lifeable)card;
-            int attackerPower = aux.attack();
-            if(battlefieldDefense.get(id) == null){ //validar
-                defensePlayer.nexusDamage(attackerPower);
-            }
-            else{
-                Card defender = battlefieldDefense.get(id);
-                Lifeable aux1 = (Lifeable)defender;
-                int defenderPower = aux1.attack();
-                aux1.takeDamage(attackerPower);
-                aux.takeDamage(defenderPower);
-                if(aux1.isDead()){
-                    battlefieldDefense.remove(aux1);
+            if (cardInPosition(battlefieldDefense, attacker.getId()) == null) {
+                defensePlayer.nexusDamage(attacker.getPower());
+            } else {
+                Lifeable defender = cardInPosition(battlefieldDefense, attacker.getId());
+                attacker.attack(defender);
+                defender.attack(attacker);
+                if (defender.isDead()) {
+                    battlefieldDefense.remove(defender);
                 }
-                if(aux.isDead()){
-                    battlefieldAttack.remove(aux);
+                if (attacker.isDead()) {
+                    battlefieldAttack.remove(attacker);
                 }
-            }
-            for(Card card1 : battlefieldAttack){
-
-                battlefieldAttack.remove(card);
             }
         }
+        attackPlayer.returnToEvockedUnits(battlefieldAttack);
+        defensePlayer.returnToEvockedUnits(battlefieldDefense);
     }
 
+    private Lifeable cardInPosition(ArrayList<Lifeable> array, int i) {
+        Lifeable out = null;
+        for (Lifeable card : array) {
+            if (card.getId() == i) {
+                out = card;
+            }
+        }
+        return out;
+    }
 
 
 }

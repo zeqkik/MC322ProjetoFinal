@@ -18,7 +18,7 @@ public class Follower extends Card implements Lifeable {
     }
 
 
-    public int attack() {
+    public int getPower() {
         return this.power;
     }
 

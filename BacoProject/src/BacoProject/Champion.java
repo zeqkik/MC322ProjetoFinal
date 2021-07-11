@@ -17,7 +17,7 @@ public class Champion extends Card implements Lifeable{
     public void powerUp(int n){
         power+=n;
     }
-    public int attack(){return this.power;}
+    public int getPower(){return this.power;}
     public void takeDamage(int i){ power-=i;}
     public boolean isDead(){
         if(life <= 0){
