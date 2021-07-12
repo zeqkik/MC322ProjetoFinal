@@ -49,7 +49,6 @@ public class Board {
 
     void Battle(Player attackPlayer, Player defensePlayer) {
         for (Lifeable attacker : battlefieldAttack) {
-            int id = 0;
             if (cardInPosition(battlefieldDefense, attacker.getBattlePosition()) == null) {
                 defensePlayer.nexusDamage(attacker.getPower());
             } else {
