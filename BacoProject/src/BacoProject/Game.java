@@ -84,8 +84,7 @@ public class Game {
 		int battle = sc.nextInt();
 		if (battle == 1) {
 			int newC = 1;
-			System.out.println(
-					attackPlayer.toString() + "Selecione a carta que deseja enviar para a batalha(Digite o id)");
+			System.out.println(attackPlayer.toString() + "Selecione a carta que deseja enviar para a batalha(Digite o id)");
 			battle(attackPlayer);
 			System.out.println(defensePlayer.toString() + ", selecione a carta que você deseja usar para defender");
 			battle(defensePlayer);
@@ -107,15 +106,17 @@ public class Game {
 			player.getEvockedUnits().remove(card);
 			System.out.println("Qual posicao deseja colocar a carta? De 1 a 6.");
 			if (!player.getAttack()) {
+				System.out.println("Campo de ataque do oponente:");
 				board.showAttackField();
 			}
 			int pos = sc.nextInt();
 			try {
 				board.toBattle(player, card, pos);
-				System.out.println("Deseja jogar uma nova carta?(Digite 0 caso queira encerrar)");
+				System.out.println("Deseja jogar uma nova carta?(Digite 0 caso queira encerrar e qualquer outro numero para continuar.)");
 				newC = sc.nextInt();
 			} catch (PositionException e) {
-				initBattle();
+				player.getEvockedUnits().add(card);
+				battle(player);
 				return;
 			}
 		} while (newC != 0 || player.getEvockedUnits().size() > 0);
@@ -171,7 +172,7 @@ public class Game {
 		} else {
 			board.Battle(players.get(1), players.get(0));
 		}
-		System.out.println("Situação atual da mesa:");
+		System.out.println("Situacao atual da mesa:");
 	}
 
 	private boolean isNexusDead() {
@@ -194,18 +195,5 @@ public class Game {
 		Board board = new Board();
 		return board;
 	}
-	/*
-	 * sorta o embrev kkkkk eu e o neymar lado a lado ainda Rodada: XJogo instancia
-	 * um board; XJogo inicializa os decks dos jogadores; XJogo inicia a primeira
-	 * rodada: Primeiro Turno: XJogadores compram 4 cartas aleatórias de seu deck
-	 * XJogadores podem escolher substituir de 0 a 4 cartas: XEscolhe n, o número
-	 * de cartas XEscolhe o id das cartas XElas voltam para o deck XJogador recebe n
-	 * cartas novas de seu deck Turno de compra: XJogadores recebem uma carta de seu
-	 * deck XJogadores ganham pontos de mana Turno de evocação XJogadores podem
-	 * pagar custo de mana de uma carta para evocar ela no campo Turno de Batalha
-	 * XAtacante escolhe entrar em batalha(Sim ou Não) Se(Não) Encerra Fase de
-	 * batalha Se(Sim) Inicia Fase de batalha Turno de Batalha XJogadores defensor e
-	 * atacanta alternam Fim da Rodada. Deseja uma
-	 */
 
 }

@@ -153,6 +153,7 @@ public class Player {
 			} else {
 				cardsToString(evockedUnits);
 				int choose_evocked = sc.nextInt(); // recebe a posição da carta
+				choose_evocked--;
 
 				if (choose_evocked > evockedUnits.size()) {
 					System.out.println("Posicao invalida");
@@ -184,7 +185,7 @@ public class Player {
 
 	public void cardsToString(ArrayList<Card> cards) {
 		int n = 1;
-		System.out.println("Jogador: " + this.name + ", Mana: " + this.mana + ", Vida do Nexus: " + this.nexusLife);
+		System.out.println("Jogador: " + this.name + ", Mana: " + this.mana + ", Mana de Feitico: "+ this.spellMana + ", Vida do Nexus: " + this.nexusLife);
 		for (Card card : cards) {
 			System.out.println(n + ": " + card.toString());
 			n++;

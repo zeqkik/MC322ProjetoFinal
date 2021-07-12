@@ -21,14 +21,18 @@ public class Board {
     void toBattle(Player player, Card card, int index) throws PositionException {
         if(player.getAttack()){
             if(!ocuppedPosition(index, battlefieldAttack)) {
-                battlefieldAttack.add((Lifeable) card);
+            	Lifeable aux = (Lifeable) card;
+            	aux.setBattlePosition(index);
+                battlefieldAttack.add(aux);
             } else{
                 System.out.println("Posicao invalida. Tente novamente.");
                 throw new PositionException();
             }
         } else {
             if(!ocuppedPosition(index, battlefieldDefense)) {
-                battlefieldDefense.add((Lifeable) card);
+            	Lifeable aux1 = (Lifeable) card;
+            	aux1.setBattlePosition(index);
+                battlefieldDefense.add(aux1);
             } else{
                 System.out.println("Posicao invalida. Tente novamente.");
                 throw new PositionException();
