@@ -1,10 +1,10 @@
 package BacoProject.Demacia;
 
+import BacoProject.Battleable;
 import BacoProject.Follower;
-import BacoProject.Lifeable;
 import BacoProject.Player;
 
-public class Poro extends Follower implements Lifeable {
+public class Poro extends Follower implements Battleable {
     public Poro(Player player, String name, int id){
         super(player, name, id);
         super.manaCost = 1;
@@ -14,7 +14,7 @@ public class Poro extends Follower implements Lifeable {
     }
 
     @Override
-    public void update(Lifeable kill, Lifeable dead, int idKill, int idDead) {
+    public void update(Battleable kill, Battleable dead, int idKill, int idDead) {
 
     }
 }

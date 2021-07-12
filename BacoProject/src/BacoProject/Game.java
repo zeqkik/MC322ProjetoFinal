@@ -83,10 +83,9 @@ public class Game {
 		Scanner sc = new Scanner(System.in);
 		int battle = sc.nextInt();
 		if (battle == 1) {
-			int newC = 1;
-			System.out.println(attackPlayer.toString() + "Selecione a carta que deseja enviar para a batalha(Digite o id)");
+			System.out.println(attackPlayer.toString() + ", selecione a carta que deseja enviar para a batalha(Digite o id)");
 			battle(attackPlayer);
-			System.out.println(defensePlayer.toString() + ", selecione a carta que você deseja usar para defender");
+			System.out.println(defensePlayer.toString() + ", selecione a carta que voce deseja usar para defender");
 			battle(defensePlayer);
 			this.hasBattle = true;
 		}
@@ -102,7 +101,13 @@ public class Game {
 				n++;
 			}
 			int select = sc.nextInt();
-			Card card = player.getEvockedUnits().get(select - 1);
+			select--;
+			if(select < 0 || select > player.getEvockedUnits().size() || player.getEvockedUnits().size() == 0) {
+				System.out.println("Posicao invalida, tente novamente.");
+				battle(player);
+				return;
+			}
+			Card card = player.getEvockedUnits().get(select);
 			player.getEvockedUnits().remove(card);
 			System.out.println("Qual posicao deseja colocar a carta? De 1 a 6.");
 			if (!player.getAttack()) {
@@ -119,7 +124,7 @@ public class Game {
 				battle(player);
 				return;
 			}
-		} while (newC != 0 || player.getEvockedUnits().size() > 0);
+		} while (newC != 0 || player.getEvockedUnits().size() != 0);
 	}
 
 	private void firstRound() {

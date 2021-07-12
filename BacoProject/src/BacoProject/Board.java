@@ -3,17 +3,17 @@ package BacoProject;
 import java.util.ArrayList;
 
 public class Board {
-    ArrayList<Lifeable> evocateAttack = new ArrayList<Lifeable>();
-    ArrayList<Lifeable> evocateDefense = new ArrayList<Lifeable>();
-    ArrayList<Lifeable> battlefieldAttack = new ArrayList<Lifeable>();
-    ArrayList<Lifeable> battlefieldDefense = new ArrayList<Lifeable>();
+    ArrayList<Battleable> evocateAttack = new ArrayList<Battleable>();
+    ArrayList<Battleable> evocateDefense = new ArrayList<Battleable>();
+    ArrayList<Battleable> battlefieldAttack = new ArrayList<Battleable>();
+    ArrayList<Battleable> battlefieldDefense = new ArrayList<Battleable>();
 
     void getEvocate(ArrayList<Card> attack,ArrayList<Card> defense){
         for(Card i : attack){
-            this.evocateAttack.add((Lifeable) i);
+            this.evocateAttack.add((Battleable) i);
         }
         for(Card i : defense){
-            this.evocateDefense.add((Lifeable) i);
+            this.evocateDefense.add((Battleable) i);
         }
     }
 
@@ -21,7 +21,7 @@ public class Board {
     void toBattle(Player player, Card card, int index) throws PositionException {
         if(player.getAttack()){
             if(!ocuppedPosition(index, battlefieldAttack)) {
-            	Lifeable aux = (Lifeable) card;
+            	Battleable aux = (Battleable) card;
             	aux.setBattlePosition(index);
                 battlefieldAttack.add(aux);
             } else{
@@ -30,7 +30,7 @@ public class Board {
             }
         } else {
             if(!ocuppedPosition(index, battlefieldDefense)) {
-            	Lifeable aux1 = (Lifeable) card;
+            	Battleable aux1 = (Battleable) card;
             	aux1.setBattlePosition(index);
                 battlefieldDefense.add(aux1);
             } else{
@@ -41,18 +41,19 @@ public class Board {
     }
 
     void showAttackField() {
-        for (Lifeable card : battlefieldAttack) {
-            int n = 1;
+    	int n = 1;
+        for (Battleable card : battlefieldAttack) {
             System.out.println(n + ": " + card.toString());
+            n++;
         }
     }
 
     void Battle(Player attackPlayer, Player defensePlayer) {
-        for (Lifeable attacker : battlefieldAttack) {
+        for (Battleable attacker : battlefieldAttack) {
             if (cardInPosition(battlefieldDefense, attacker.getBattlePosition()) == null) {
                 defensePlayer.nexusDamage(attacker.getPower());
             } else {
-                Lifeable defender = cardInPosition(battlefieldDefense, attacker.getBattlePosition());
+            	Battleable defender = cardInPosition(battlefieldDefense, attacker.getBattlePosition());
                 attacker.attack(defender);
                 defender.attack(attacker);
                 if (defender.isDead()) {
@@ -69,9 +70,9 @@ public class Board {
         defensePlayer.returnToEvockedUnits(battlefieldDefense);
     }
 
-    private Lifeable cardInPosition(ArrayList<Lifeable> array, int i) {
-        Lifeable out = null;
-        for (Lifeable card : array) {
+    private Battleable cardInPosition(ArrayList<Battleable> array, int i) {
+    	Battleable out = null;
+        for (Battleable card : array) {
             if (card.getBattlePosition() == i) {
                 out = card;
             }
@@ -81,27 +82,27 @@ public class Board {
 
     public void showBoard(){
         System.out.println("Cartas evocadas do jogador 1:");
-        for (Lifeable card : evocateAttack) {
+        for (Battleable card : evocateAttack) {
             int n = 1;
             System.out.println(n + ": " + card.toString());
         }
         System.out.println("Cartas evocadas do jogador 2:");
-        for (Lifeable card : evocateDefense) {
+        for (Battleable card : evocateDefense) {
             int n = 1;
             System.out.println(n + ": " + card.toString());
         }
     }
 
-    private void notifyBattle(Lifeable kill, Lifeable dead, int idKill, int idDead){
-        for(Lifeable i : battlefieldAttack){
+    private void notifyBattle(Battleable kill, Battleable dead, int idKill, int idDead){
+        for(Battleable i : battlefieldAttack){
             i.update(kill, dead, idKill, idDead);
         }
-        for(Lifeable i : battlefieldDefense){
+        for(Battleable i : battlefieldDefense){
             i.update(kill, dead, idKill, idDead);
         }
     }
-    public boolean ocuppedPosition(int pos, ArrayList<Lifeable> battlefield){
-        for(Lifeable card : battlefield){
+    public boolean ocuppedPosition(int pos, ArrayList<Battleable> battlefield){
+        for(Battleable card : battlefield){
             if(card.getBattlePosition()==pos){
                 return true;
             }

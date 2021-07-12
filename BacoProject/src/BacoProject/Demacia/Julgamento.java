@@ -21,16 +21,13 @@ public class Julgamento extends Card implements iSpell {
             System.out.println("Posicao invalida, tente novamente.");
             this.playEffect();
         } else{
-            Lifeable card = (Lifeable) super.owner.getEvockedUnits().get(n);
+        	Battleable card = (Battleable) super.owner.getEvockedUnits().get(n);
 
         }
     }
     
     @Override
     public String toString() {
-    	String out = "";
-    	out = super.name + ": ";
-    	out += "Mana: " +super.manaCost ;
-        return out;
+    	return super.toString();
     }
 }

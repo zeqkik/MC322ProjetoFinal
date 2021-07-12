@@ -2,7 +2,7 @@ package BacoProject.Demacia;
 
 import BacoProject.*;
 
-public class Tiana extends Follower implements iEffect, Lifeable {
+public class Tiana extends Follower implements iEffect, Battleable {
     public Tiana(Player player, String name, int id){
         super(player, name, id);
         super.manaCost = 8;
@@ -17,7 +17,7 @@ public class Tiana extends Follower implements iEffect, Lifeable {
     }
 
     @Override
-    public void update(Lifeable kill, Lifeable dead, int idKill, int idDead) {
+    public void update(Battleable kill, Battleable dead, int idKill, int idDead) {
 
     }
 }

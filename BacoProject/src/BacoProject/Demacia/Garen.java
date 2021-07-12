@@ -2,7 +2,7 @@ package BacoProject.Demacia;
 
 import BacoProject.*;
 
-public class Garen extends Champion implements iEffect, Lifeable {
+public class Garen extends Champion implements iEffect, Battleable {
     private int attackCounter = 0;
     private int numKills;
     public Garen(Player player, String name, int id){
@@ -21,7 +21,7 @@ public class Garen extends Champion implements iEffect, Lifeable {
     }
 
     @Override
-    public void update(Lifeable kill, Lifeable dead, int idKill, int idDead) {
+    public void update(Battleable kill, Battleable dead, int idKill, int idDead) {
         if(idKill == this.id && owner.getAttack()){
             this.numKills ++;
             if(numKills == 2){

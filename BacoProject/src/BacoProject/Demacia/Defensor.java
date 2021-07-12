@@ -2,7 +2,7 @@ package BacoProject.Demacia;
 
 import BacoProject.*;
 
-public class Defensor extends Follower implements iEffect, Lifeable {
+public class Defensor extends Follower implements iEffect, Battleable {
     private int furyN;
     private int furyM;
     private Trace trace=Trace.FURY;
@@ -21,7 +21,7 @@ public class Defensor extends Follower implements iEffect, Lifeable {
     }
 
     @Override
-    public void update(Lifeable kill, Lifeable dead, int idKill, int idDead) {
+    public void update(Battleable kill, Battleable dead, int idKill, int idDead) {
         if(dead instanceof Follower && idKill == super.id){
             this.playEffect();
         }

@@ -18,9 +18,6 @@ public class ValorRedobrado extends Card implements iSpell {
 
     @Override
     public String toString() {
-    	String out = "";
-    	out = super.name + ": ";
-    	out += "Mana: " +super.manaCost ;
-        return out;
+    	return super.toString();
     }
 }

@@ -2,7 +2,7 @@ package BacoProject.Demacia;
 
 import BacoProject.*;
 
-public class Duelista extends Follower implements iEffect, Lifeable {
+public class Duelista extends Follower implements iEffect, Battleable {
 
     public Duelista(Player player, String name, int id) {
         super(player, name, id);
@@ -20,7 +20,7 @@ public class Duelista extends Follower implements iEffect, Lifeable {
     }
 
     @Override
-    public void update(Lifeable kill, Lifeable dead, int idKill, int idDead) {
+    public void update(Battleable kill, Battleable dead, int idKill, int idDead) {
         if(dead instanceof Follower && idKill == this.id){
             playEffect();
         }

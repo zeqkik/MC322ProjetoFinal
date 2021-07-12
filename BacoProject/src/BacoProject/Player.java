@@ -268,8 +268,8 @@ public class Player {
 		this.mana = 0;
 	}
 
-	public void returnToEvockedUnits(ArrayList<Lifeable> battlefield) {
-		for (Lifeable card : battlefield) {
+	public void returnToEvockedUnits(ArrayList<Battleable> battlefield) {
+		for (Battleable card : battlefield) {
 			evockedUnits.add((Card) card);
 		}
 	}
