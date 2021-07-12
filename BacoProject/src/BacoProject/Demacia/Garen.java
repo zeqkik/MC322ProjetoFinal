@@ -17,11 +17,11 @@ public class Garen extends Champion implements iEffect, Lifeable {
 
     @Override
     public void playEffect() {
-        this.life = 5;
+    	super.life = 5;
     }
 
     @Override
-    public void update(Card kill, Card dead, int idKill, int idDead) {
+    public void update(Lifeable kill, Lifeable dead, int idKill, int idDead) {
         if(idKill == this.id && owner.getAttack()){
             this.numKills ++;
             if(numKills == 2){

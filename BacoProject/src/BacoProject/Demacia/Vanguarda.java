@@ -14,18 +14,17 @@ public class Vanguarda extends Follower implements iEffect, Lifeable{
     }
     @Override
     public void playEffect() {
-        ArrayList<Card> evocked = this.owner.getEvockedUnits();
+        ArrayList<Card> evocked = super.owner.getEvockedUnits();
         for(Card card : evocked){
             if(card instanceof Lifeable) {
-                Lifeable aux = (Lifeable) card;
-                aux.lifeUp(1);
-                aux.powerUp(1);
+                ((Lifeable) card).lifeUp(1);
+                ((Lifeable) card).powerUp(1);
             }
         }
     }
 
     @Override
-    public void update(Card kill, Card dead, int idKill, int idDead) {
+    public void update(Lifeable kill, Lifeable dead, int idKill, int idDead) {
 
     }
 

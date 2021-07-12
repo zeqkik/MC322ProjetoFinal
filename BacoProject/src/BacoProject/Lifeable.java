@@ -9,5 +9,8 @@ public interface Lifeable {
     public void takeDamage(int i);
     public boolean isDead();
     public void setBattlePosition(int i);
+    public int getBattlePosition();
     public int getId();
+    public void update(Lifeable kill, Lifeable dead, int idKill, int idDead);
+    public String toString();
 }

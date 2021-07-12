@@ -9,16 +9,31 @@ public class Board {
     ArrayList<Lifeable> battlefieldDefense = new ArrayList<Lifeable>();
 
     void getEvocate(ArrayList<Card> attack,ArrayList<Card> defense){
-        this.evocateAttack.addAll(attack);
-        this.evocateDefense.addAll(defense);
+        for(Card i : attack){
+            this.evocateAttack.add((Lifeable) i);
+        }
+        for(Card i : defense){
+            this.evocateDefense.add((Lifeable) i);
+        }
     }
 
-    void toBattle(Card card) {
-        battlefieldAttack.add((Lifeable) card);
-    }
 
-    void toBattle(Card card, int index) {
-        battlefieldDefense.add(index, (Lifeable) card);
+    void toBattle(Player player, Card card, int index) throws PositionException {
+        if(player.getAttack()){
+            if(!ocuppedPosition(index, battlefieldAttack)) {
+                battlefieldAttack.add((Lifeable) card);
+            } else{
+                System.out.println("Posicao invalida. Tente novamente.");
+                throw new PositionException();
+            }
+        } else {
+            if(!ocuppedPosition(index, battlefieldDefense)) {
+                battlefieldDefense.add((Lifeable) card);
+            } else{
+                System.out.println("Posicao invalida. Tente novamente.");
+                throw new PositionException();
+            }
+        }
     }
 
     void showAttackField() {
@@ -31,16 +46,18 @@ public class Board {
     void Battle(Player attackPlayer, Player defensePlayer) {
         for (Lifeable attacker : battlefieldAttack) {
             int id = 0;
-            if (cardInPosition(battlefieldDefense, attacker.getId()) == null) {
+            if (cardInPosition(battlefieldDefense, attacker.getBattlePosition()) == null) {
                 defensePlayer.nexusDamage(attacker.getPower());
             } else {
-                Lifeable defender = cardInPosition(battlefieldDefense, attacker.getId());
+                Lifeable defender = cardInPosition(battlefieldDefense, attacker.getBattlePosition());
                 attacker.attack(defender);
                 defender.attack(attacker);
                 if (defender.isDead()) {
+                    notifyBattle(attacker, defender, attacker.getId(), defender.getId());
                     battlefieldDefense.remove(defender);
                 }
                 if (attacker.isDead()) {
+                    notifyBattle(defender, attacker, defender.getId(), attacker.getId());
                     battlefieldAttack.remove(attacker);
                 }
             }
@@ -52,7 +69,7 @@ public class Board {
     private Lifeable cardInPosition(ArrayList<Lifeable> array, int i) {
         Lifeable out = null;
         for (Lifeable card : array) {
-            if (card.getId() == i) {
+            if (card.getBattlePosition() == i) {
                 out = card;
             }
         }
@@ -72,4 +89,20 @@ public class Board {
         }
     }
 
+    private void notifyBattle(Lifeable kill, Lifeable dead, int idKill, int idDead){
+        for(Lifeable i : battlefieldAttack){
+            i.update(kill, dead, idKill, idDead);
+        }
+        for(Lifeable i : battlefieldDefense){
+            i.update(kill, dead, idKill, idDead);
+        }
+    }
+    public boolean ocuppedPosition(int pos, ArrayList<Lifeable> battlefield){
+        for(Lifeable card : battlefield){
+            if(card.getBattlePosition()==pos){
+                return true;
+            }
+        }
+    return false;
+    }
 }

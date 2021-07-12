@@ -1,8 +1,6 @@
 package BacoProject;
 
 public abstract class Champion extends Card implements Lifeable{
-    protected int power;
-    protected int life;
     protected Trace trace;
     protected int battlePosition;
 
@@ -11,15 +9,15 @@ public abstract class Champion extends Card implements Lifeable{
     }
 
     public void lifeUp(int n){
-        life+=n;
+    	super.life+=n;
     }
     public void powerUp(int n){
-        power+=n;
+    	super.power+=n;
     }
-    public int getPower(){return this.power;}
-    public void takeDamage(int i){ power-=i;}
+    public int getPower(){return super.power;}
+    public void takeDamage(int i){ super.power-=i;}
     public boolean isDead(){
-        if(life <= 0){
+        if(super.life <= 0){
             return true;
         }else{
             return false;
@@ -28,12 +26,20 @@ public abstract class Champion extends Card implements Lifeable{
 
     @Override
     public void setBattlePosition(int i) {
-        this.battlePosition = i;
+    	this.battlePosition = i;
+    }
+
+    public int getBattlePosition(){
+        return this.battlePosition;
     }
 
     public void attack(Lifeable card){
-        card.takeDamage(this.power);
+        card.takeDamage(super.power);
     }
     public abstract void levelUp();
+    
+    public String toString() {
+    	return super.toString();
+    }
 
 }

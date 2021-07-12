@@ -8,7 +8,7 @@ public class Tiana extends Follower implements iEffect, Lifeable {
         super.manaCost = 8;
         super.power = 7;
         super.life = 7;
-        this.battlePosition = -1;
+        super.battlePosition = -1;
     }
     @Override
     public void playEffect() {
@@ -17,7 +17,7 @@ public class Tiana extends Follower implements iEffect, Lifeable {
     }
 
     @Override
-    public void update(Card kill, Card dead, int idKill, int idDead) {
+    public void update(Lifeable kill, Lifeable dead, int idKill, int idDead) {
 
     }
 }

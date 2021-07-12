@@ -12,4 +12,9 @@ public class Poro extends Follower implements Lifeable {
         super.life = 1;
         super.battlePosition = -1;
     }
+
+    @Override
+    public void update(Lifeable kill, Lifeable dead, int idKill, int idDead) {
+
+    }
 }

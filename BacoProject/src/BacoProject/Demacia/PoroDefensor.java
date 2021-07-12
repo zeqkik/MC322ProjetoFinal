@@ -12,12 +12,12 @@ public class PoroDefensor extends Follower implements iEffect, Lifeable {
     }
     @Override
     public void playEffect() {
-        owner.getCard(1);
+    	super.owner.getCard(1);
     }
 
     @Override
-    public void update(Card kill, Card dead, int idKill, int idDead) {
-        if(idDead == this.id){
+    public void update(Lifeable kill, Lifeable dead, int idKill, int idDead) {
+        if(idDead == super.id){
             this.playEffect();
         }
     }

@@ -16,7 +16,7 @@ public class SizeException extends ArrayIndexOutOfBoundsException {
 	 *
 	 * }
 	 *
-	 * public CrazyDSException(Throwable cause) { super(cause); }
+	 * public SizeException(Throwable cause) { super(cause); }
 } */
 
 }

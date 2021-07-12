@@ -12,7 +12,7 @@ public class GolpeCerteiro extends Card implements iSpell {
     @Override
     public void playEffect() {
         //dê +1/+1 a um aliado nesta rodada;
-        owner.cardsToString(owner.getEvockedUnits());
+    	super.owner.cardsToString(super.owner.getEvockedUnits());
         System.out.println("Selecione um aliado para dar +1/+1");
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -20,9 +20,17 @@ public class GolpeCerteiro extends Card implements iSpell {
             System.out.println("Posicao invalida, tente novamente.");
             this.playEffect();
         } else{
-            Lifeable card = (Lifeable) owner.getEvockedUnits().get(n);
+            Lifeable card = (Lifeable) super.owner.getEvockedUnits().get(n);
             card.lifeUp(1);
             card.powerUp(1);
         }
+    }
+    
+    @Override
+    public String toString() {
+    	String out = "";
+    	out = super.name + ": ";
+    	out += "Mana: " +super.manaCost ;
+        return out;
     }
 }

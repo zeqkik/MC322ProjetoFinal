@@ -10,8 +10,8 @@ public class Deck {
     private Player player;
 
     public Deck(Player player) {
-        getRandomDeck();
-        this.player = player;
+    	this.player = player;
+        getRandomDeck();   
     }
 
     public Deck(){
@@ -51,40 +51,40 @@ public class Deck {
     public Card getRandomCard(){
         Random ran = new Random();
         Card aux = null;
-        int j = ran.nextInt(11);
+        int j = ran.nextInt(10);
         switch (j) {
             case 0:
-                aux = new Garen(this.player, "Garen", player.getNumCards());
+            	aux = new Garen(this.player, "Garen", player.getNumCards());
                 break;
             case 1:
-                aux = new Tiana(this.player, "Tiana", player.getNumCards());
+            	aux = new Tiana(this.player, "Tiana", player.getNumCards());
                 break;
             case 2:
-                aux = new Vanguarda(this.player, "Vanguarda", player.getNumCards());
+            	aux = new Vanguarda(this.player, "Vanguarda", player.getNumCards());
                 break;
             case 3:
-                aux = new Duelista(this.player, "Duelista", player.getNumCards());
+            	aux = new Duelista(this.player, "Duelista", player.getNumCards());
                 break;
             case 4:
-                aux = new Defensor(this.player, "Defensor", player.getNumCards());
+            	aux = new Defensor(this.player, "Defensor", player.getNumCards());
                 break;
             case 5:
-                aux = new Poro(this.player, "Poro", player.getNumCards());
+            	aux = new Poro(this.player, "Poro", player.getNumCards());
                 break;
             case 6:
-                aux = new PoroDefensor(this.player, "Poro Defensor", player.getNumCards());
+            	aux = new PoroDefensor(this.player, "Poro Defensor", player.getNumCards());
                 break;
             case 7:
-                aux = new Julgamento(this.player, "Julgamento", player.getNumCards());
+            	aux = new Julgamento(this.player, "Julgamento", player.getNumCards());
                 break;
             case 8:
-                aux = new ValorRedobrado(this.player, "Valor Redobrado", player.getNumCards());
+            	aux = new ValorRedobrado(this.player, "Valor Redobrado", player.getNumCards());
                 break;
             case 9:
-                aux = new GolpeCerteiro(this.player, "Golpe Certeiro", player.getNumCards());
+            	aux = new GolpeCerteiro(this.player, "Golpe Certeiro", player.getNumCards());
                 break;
             case 10:
-                aux = new CombateUmAUm(this.player, "Vanguarda", player.getNumCards());
+            	aux = new CombateUmAUm(this.player, "Vanguarda", player.getNumCards());
                 break;
         }
         player.incrementNumCards();

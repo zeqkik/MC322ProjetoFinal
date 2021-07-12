@@ -1,6 +1,6 @@
 package BacoProject;
 //esta igual a follower
-public class Card implements Lifeable{
+public class Card {
     protected String name;
     protected Player owner;
     protected int life;
@@ -15,7 +15,12 @@ public class Card implements Lifeable{
         this.id = id;
     }
     public String toString(){
-        return this.name;
+    	String out = "";
+    	out = this.name + ": ";
+    	out += "Mana: " + this.manaCost + "/" ;
+    	out += "Poder: " + this.power + "/";
+    	out += "Vida: " + this.life;
+        return out;
     }
     public int getMana() {
         return this.manaCost;
@@ -48,13 +53,8 @@ public class Card implements Lifeable{
         }
     }
 
-    @Override
-    public void setBattlePosition(int i) {
-        this.battlePosition = i;
-    }
-
     public void attack(Lifeable card){
         card.takeDamage(this.power);
     }
 }
-}
+

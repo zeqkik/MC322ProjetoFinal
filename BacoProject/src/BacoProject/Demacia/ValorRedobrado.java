@@ -16,4 +16,11 @@ public class ValorRedobrado extends Card implements iSpell {
         //Cure inteiramente um aliado; dobre o ataque e defesa deste aliado;
     }
 
+    @Override
+    public String toString() {
+    	String out = "";
+    	out = super.name + ": ";
+    	out += "Mana: " +super.manaCost ;
+        return out;
+    }
 }

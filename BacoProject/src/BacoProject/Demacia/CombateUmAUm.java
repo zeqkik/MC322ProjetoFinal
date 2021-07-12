@@ -14,5 +14,13 @@ public class CombateUmAUm extends Card implements iSpell {
         //escolhe um aliado e um oponente para um combate imediato
 
     }
+    
+    @Override
+    public String toString() {
+    	String out = "";
+    	out = super.name + ": ";
+    	out += "Mana: " +super.manaCost ;
+        return out;
+    }
 
 }

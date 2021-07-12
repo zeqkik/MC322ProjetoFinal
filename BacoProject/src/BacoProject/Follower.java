@@ -1,8 +1,6 @@
 package BacoProject;
 
 public class Follower extends Card implements Lifeable {
-    protected int power;
-    protected int life;
     protected int battlePosition;
 
     public Follower(Player player, String name, int id) {
@@ -10,24 +8,24 @@ public class Follower extends Card implements Lifeable {
     }
 
     public void lifeUp(int n) {
-        life += n;
+    	super.life += n;
     }
 
     public void powerUp(int n) {
-        power += n;
+    	super.power += n;
     }
 
 
     public int getPower() {
-        return this.power;
+        return super.power;
     }
 
     public void takeDamage(int i) {
-        power -= i;
+    	super.power -= i;
     }
 
     public boolean isDead() {
-        if (life <= 0) {
+        if (super.life <= 0) {
             return true;
         } else {
             return false;
@@ -39,7 +37,22 @@ public class Follower extends Card implements Lifeable {
         this.battlePosition = i;
     }
 
+    @Override
+    public int getBattlePosition() {
+        return battlePosition;
+    }
+
+
+    @Override
+    public void update(Lifeable kill, Lifeable dead, int idKill, int idDead){}
+
+
+
     public void attack(Lifeable card){
-        card.takeDamage(this.power);
+        card.takeDamage(super.power);
+    }
+    
+    public String toString() {
+    	return super.toString();
     }
 }
