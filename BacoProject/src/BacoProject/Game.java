@@ -23,8 +23,6 @@ public class Game {
 		firstRound();
 
 		while (!exitSelected) {
-			// drawBoard();
-			// readInput();
 			if (player1.getAttack()) {
 				System.out.println("Rodada do " + player1.toString() + " atacando.");
 			} else {
@@ -41,18 +39,6 @@ public class Game {
 		}
 		System.out.println("Game terminated. Bye!");
 	}
-
-//    private void drawBoard() {
-//
-//    }
-//
-//    private void readInput() {
-//
-//    }
-//
-//    private void updateBoard() {
-//
-//    }
 
 	private void nextRound() {
 		for (Player i : players) {
@@ -83,7 +69,8 @@ public class Game {
 		Scanner sc = new Scanner(System.in);
 		int battle = sc.nextInt();
 		if (battle == 1) {
-			System.out.println(attackPlayer.toString() + ", selecione a carta que deseja enviar para a batalha(Digite o id)");
+			System.out.println(
+					attackPlayer.toString() + ", selecione a carta que deseja enviar para a batalha(Digite o id)");
 			battle(attackPlayer);
 			System.out.println(defensePlayer.toString() + ", selecione a carta que voce deseja usar para defender");
 			battle(defensePlayer);
@@ -102,7 +89,7 @@ public class Game {
 			}
 			int select = sc.nextInt();
 			select--;
-			if(select < 0 || select > player.getEvockedUnits().size() || player.getEvockedUnits().size() == 0) {
+			if (select < 0 || select > player.getEvockedUnits().size() || player.getEvockedUnits().size() == 0) {
 				System.out.println("Posicao invalida, tente novamente.");
 				battle(player);
 				return;
@@ -117,7 +104,8 @@ public class Game {
 			int pos = sc.nextInt();
 			try {
 				board.toBattle(player, card, pos);
-				System.out.println("Deseja jogar uma nova carta?(Digite 0 caso queira encerrar e qualquer outro numero para continuar.)");
+				System.out.println(
+						"Deseja jogar uma nova carta?(Digite 0 caso queira encerrar e qualquer outro numero para continuar.)");
 				newC = sc.nextInt();
 			} catch (PositionException e) {
 				player.getEvockedUnits().add(card);
@@ -160,11 +148,10 @@ public class Game {
 		}
 		System.out.println("Situacao atual da mesa:");
 		printEvocked();
-		//board.showBoard();
 	}
-	
+
 	private void printEvocked() {
-		for(Player i : players) {
+		for (Player i : players) {
 			System.out.print("Cartas evocadas de ");
 			i.cardsToString(i.getEvockedUnits());
 		}
