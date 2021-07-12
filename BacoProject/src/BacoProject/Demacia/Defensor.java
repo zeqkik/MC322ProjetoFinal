@@ -16,7 +16,7 @@ public class Defensor extends Follower implements iEffect, Battleable {
 
     @Override
     public void playEffect() {
-        // Quando destruir um seguidor adversario ganhaÌ� +0/ +1.
+        // Quando destruir um seguidor adversario ganha +0/ +1.
     	super.power++;
     }
 
