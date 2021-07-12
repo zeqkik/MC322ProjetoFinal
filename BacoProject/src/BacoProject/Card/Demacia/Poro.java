@@ -1,8 +1,8 @@
-package BacoProject.Demacia;
+package BacoProject.Card.Demacia;
 
-import BacoProject.Battleable;
-import BacoProject.Follower;
-import BacoProject.Player;
+import BacoProject.Card.Battleable;
+import BacoProject.Card.Follower;
+import BacoProject.Player.Player;
 
 public class Poro extends Follower {
 	public Poro(Player player, String name, int id) {

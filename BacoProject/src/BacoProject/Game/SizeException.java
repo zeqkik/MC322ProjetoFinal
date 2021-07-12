@@ -1,4 +1,4 @@
-package BacoProject;
+package BacoProject.Game;
 
 public class SizeException extends ArrayIndexOutOfBoundsException {
 

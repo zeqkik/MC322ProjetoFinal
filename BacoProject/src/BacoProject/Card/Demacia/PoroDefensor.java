@@ -1,6 +1,10 @@
-package BacoProject.Demacia;
+package BacoProject.Card.Demacia;
 
 import BacoProject.*;
+import BacoProject.Card.Battleable;
+import BacoProject.Card.Follower;
+import BacoProject.Card.iEffect;
+import BacoProject.Player.Player;
 
 public class PoroDefensor extends Follower implements iEffect {
 	public PoroDefensor(Player player, String name, int id) {

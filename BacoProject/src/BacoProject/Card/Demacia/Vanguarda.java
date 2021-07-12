@@ -1,8 +1,13 @@
-package BacoProject.Demacia;
+package BacoProject.Card.Demacia;
 
-import BacoProject.*;
+import BacoProject.Card.Battleable;
+import BacoProject.Card.Card;
+import BacoProject.Card.Follower;
+import BacoProject.Card.iEffect;
+import BacoProject.Player.Player;
 
 import java.util.ArrayList;
+
 
 public class Vanguarda extends Follower implements iEffect {
 	public Vanguarda(Player player, String name, int id) {

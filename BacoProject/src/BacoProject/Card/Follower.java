@@ -1,4 +1,6 @@
-package BacoProject;
+package BacoProject.Card;
+
+import BacoProject.Player.Player;
 
 public class Follower extends Card implements Battleable {
 	protected int battlePosition;

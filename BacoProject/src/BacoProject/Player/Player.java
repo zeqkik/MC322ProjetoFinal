@@ -1,8 +1,12 @@
-package BacoProject;
+package BacoProject.Player;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+
+import BacoProject.Card.*;
+import BacoProject.Game.SizeException;
+
 
 public class Player {
 	private String name;
@@ -91,31 +95,35 @@ public class Player {
 				"Selecione a carta que deseja invocar. Ou, para pular, digite qualquer numero fora do intervalo.");
 		cardsToString(hand);
 
-		int choose_card = sc.nextInt(); // recebe a posição da carta
+		int choose_card = sc.nextInt(); // recebe a posicao da carta
 		choose_card--;
 
 		if (choose_card > hand.size() || choose_card < 0) {
 			System.out.println("Deseja pular? Digite 0 para 'sim' e qualquer numero para retornar.");
 			int pular = sc.nextInt();
 			if (pular == 0) {
-				return;
 			} else {
 				System.out.println("Posicao invalida. Tente novamente.");
 				evoke();
-				return;
 			}
+			return;
 		}
 
 		if (hand.get(choose_card) instanceof iSpell) {
 			iSpell spell = (iSpell) hand.get(choose_card);
-			if (this.spellMana < spell.getMana()) {
-				System.out.println("Pontos de mana insuficientes.");
-				evoke();
-				return;
+			if (this.mana < spell.getMana()) {
+				if (this.mana + this.spellMana < spell.getMana()) {
+					System.out.println("Pontos de mana insuficientes.");
+					evoke();
+				} else {
+					this.spellMana -= spell.getMana() - this.mana;
+					spell.playEffect();
+				}
 			} else {
+				this.mana -= spell.getMana();
 				spell.playEffect();
-				return;
 			}
+			return;
 		}
 
 		evockeLifeable(choose_card);
@@ -152,7 +160,7 @@ public class Player {
 				evockeLifeable(choose_card);
 			} else {
 				cardsToString(evockedUnits);
-				int choose_evocked = sc.nextInt(); // recebe a posição da carta
+				int choose_evocked = sc.nextInt(); // recebe a posicao da carta
 				choose_evocked--;
 
 				if (choose_evocked > evockedUnits.size()) {
@@ -180,6 +188,8 @@ public class Player {
 			}
 		} else if (evockeOrChange == 2) {
 			evoke();
+		} else {
+			System.out.println("Numero invalido");
 		}
 	}
 
@@ -261,12 +271,12 @@ public class Player {
 
 	public void setMana() {
 		if (this.mana > 3) {
-			this.spellMana += 3;
-		}
-		if (this.mana > 0 && this.mana <= 3) {
+			this.spellMana = 3;
+		} else if (this.mana > 0 || this.mana <= 3) {
 			this.spellMana += this.mana;
 		}
 		this.mana = 0;
+
 	}
 
 	public void returnToEvockedUnits(ArrayList<Battleable> battlefield) {

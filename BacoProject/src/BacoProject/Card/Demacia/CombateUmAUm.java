@@ -1,8 +1,8 @@
-package BacoProject.Demacia;
+package BacoProject.Card.Demacia;
 
-import BacoProject.Card;
-import BacoProject.Player;
-import BacoProject.iSpell;
+import BacoProject.Card.Card;
+import BacoProject.Card.iSpell;
+import BacoProject.Player.Player;
 
 public class CombateUmAUm extends Card implements iSpell {
 	public CombateUmAUm(Player player, String name, int id) {

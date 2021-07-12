@@ -1,4 +1,4 @@
-package BacoProject;
+package BacoProject.Card;
 
 public interface iEffect {
 

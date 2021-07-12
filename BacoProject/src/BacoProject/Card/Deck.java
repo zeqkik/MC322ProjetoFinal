@@ -1,6 +1,7 @@
-package BacoProject;
+package BacoProject.Card;
 
-import BacoProject.Demacia.*;
+import BacoProject.Card.Demacia.*;
+import BacoProject.Player.Player;
 
 import java.util.ArrayList;
 import java.util.Random;

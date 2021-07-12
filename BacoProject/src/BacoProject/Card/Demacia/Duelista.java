@@ -1,6 +1,11 @@
-package BacoProject.Demacia;
+package BacoProject.Card.Demacia;
 
 import BacoProject.*;
+import BacoProject.Card.Card;
+import BacoProject.Card.Battleable;
+import BacoProject.Card.Follower;
+import BacoProject.Card.iEffect;
+import BacoProject.Player.Player;
 
 public class Duelista extends Follower implements iEffect {
 

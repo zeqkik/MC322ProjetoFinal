@@ -1,4 +1,6 @@
-package BacoProject;
+package BacoProject.Card;
+
+import BacoProject.Player.Player;
 
 public abstract class Champion extends Card implements Battleable {
 	protected Trace trace;
@@ -23,7 +25,7 @@ public abstract class Champion extends Card implements Battleable {
 	}
 
 	public void takeDamage(int i) {
-		this.power -= i;
+		this.life -= i;
 	}
 
 	public boolean isDead() {

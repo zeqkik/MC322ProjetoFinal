@@ -1,6 +1,10 @@
-package BacoProject;
+package BacoProject.Game;
 
 import java.util.ArrayList;
+
+import BacoProject.Card.Battleable;
+import BacoProject.Card.Card;
+import BacoProject.Player.Player;
 
 public class Board {
 	ArrayList<Battleable> evocateAttack = new ArrayList<Battleable>();

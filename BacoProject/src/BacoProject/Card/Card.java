@@ -1,4 +1,6 @@
-package BacoProject;
+package BacoProject.Card;
+
+import BacoProject.Player.Player;
 
 public class Card {
 	protected String name;
@@ -15,7 +17,7 @@ public class Card {
 	public String toString() {
 		String out = "";
 		out = this.name + ": ";
-		out += "Mana: " + this.manaCost + "/";
+		out += "Mana: " + this.manaCost;
 		return out;
 	}
 

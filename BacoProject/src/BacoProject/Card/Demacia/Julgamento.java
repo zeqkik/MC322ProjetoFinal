@@ -1,6 +1,9 @@
-package BacoProject.Demacia;
+package BacoProject.Card.Demacia;
 
-import BacoProject.*;
+import BacoProject.Card.Battleable;
+import BacoProject.Card.Card;
+import BacoProject.Card.iSpell;
+import BacoProject.Player.Player;
 
 import java.util.Scanner;
 

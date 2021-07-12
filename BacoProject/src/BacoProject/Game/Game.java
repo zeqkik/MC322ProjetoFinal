@@ -1,7 +1,9 @@
-package BacoProject;
+package BacoProject.Game;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import BacoProject.Card.Card;
+import BacoProject.Player.Player;
 
 public class Game {
 	private ArrayList<Player> players = new ArrayList<Player>();
@@ -13,8 +15,8 @@ public class Game {
 	public void start() {
 		exitSelected = false;
 		System.out.println("Game started!");
-		Player player1 = createPlayer("Camino");
-		Player player2 = createPlayer("Serpa");
+		Player player1 = createPlayer("Player 1");
+		Player player2 = createPlayer("Player 2");
 		player1.setAttack(true);
 		player2.setAttack(false);
 		board = createBoard();
@@ -89,7 +91,11 @@ public class Game {
 			}
 			int select = sc.nextInt();
 			select--;
-			if (select < 0 || select > player.getEvockedUnits().size() || player.getEvockedUnits().size() == 0) {
+			if (select < 0 || select > player.getEvockedUnits().size()) {
+				if(player.getEvockedUnits().size() == 0) {
+					System.out.println("Posicao invalida.");
+					return;
+				}
 				System.out.println("Posicao invalida, tente novamente.");
 				battle(player);
 				return;

@@ -1,6 +1,11 @@
-package BacoProject.Demacia;
+package BacoProject.Card.Demacia;
 
 import BacoProject.*;
+import BacoProject.Card.Battleable;
+import BacoProject.Card.Champion;
+import BacoProject.Card.Trace;
+import BacoProject.Card.iEffect;
+import BacoProject.Player.Player;
 
 public class Garen extends Champion implements iEffect {
 	private int attackCounter = 0;

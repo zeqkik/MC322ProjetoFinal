@@ -1,6 +1,11 @@
-package BacoProject.Demacia;
+package BacoProject.Card.Demacia;
 
 import BacoProject.*;
+import BacoProject.Card.Battleable;
+import BacoProject.Card.Follower;
+import BacoProject.Card.Trace;
+import BacoProject.Card.iEffect;
+import BacoProject.Player.Player;
 
 public class Defensor extends Follower implements iEffect {
 	private int furyN;

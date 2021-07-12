@@ -1,4 +1,4 @@
-package BacoProject;
+package BacoProject.Game;
 
 public class PositionException extends IllegalAccessException {
 	public PositionException() {
